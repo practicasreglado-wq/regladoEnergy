@@ -42,7 +42,7 @@
 
 <script setup>
 import { ref } from "vue";
-import logo from "../assets/reglado-energy-logo.png";
+import logo from "../assets/reglado-energy-logo.svg";
 const open = ref(false);
 </script>
 

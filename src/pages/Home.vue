@@ -123,11 +123,13 @@
           text="Mantenimiento del control del suministro y adaptación a cambios del mercado."
         />
         <div class="card glow" v-glow>
-          <div class="h2" style="margin-bottom:10px;">¿Quieres saber si estás pagando de más?</div>
+          <div class="h2new" style="margin-bottom:10px;">¿Quieres saber si estás pagando de más?</div>
           <p class="p">
             Realizamos un análisis gratuito de facturas. Déjanos tus datos o sube tu factura en PDF y te llamamos con los resultados.
           </p>
-          <router-link to="/contacto" class="btn primary glow" v-glow>Empezar ahora</router-link>
+          <div class="card-cta-center">
+            <router-link to="/contacto" class="btn primary glow" v-glow>Empezar ahora</router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -141,7 +143,9 @@
           Reglado Energy es una consultoría energética independiente especializada en la optimización y gestión de contratos de luz y gas
           para particulares, empresas y sector público.
         </p>
-        <router-link to="/sobre-nosotros" class="btn glow" v-glow>Conocer más</router-link>
+        <div class="about-cta-center">
+          <router-link to="/sobre-nosotros" class="btn primary glow" v-glow>Conocer más</router-link>
+        </div>
       </div>
     </div>
   </section>
@@ -170,4 +174,7 @@ onMounted(() => {
   margin-bottom: 10px;
 }
 .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 16px; }
+.about-cta-center{ display:flex; justify-content:center; margin-top: 14px; }
+.card-cta-center{ display:flex; justify-content:center; margin-top: 14px; }
 </style>
+

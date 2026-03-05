@@ -5,7 +5,7 @@
 
 ## Instalación
 ```bash
-npm install
+npm install  (dependencias en un proyecto Node.js.)
 ```
 
 ## Desarrollo (local)

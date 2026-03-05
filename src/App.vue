@@ -18,6 +18,7 @@
 </main>
     <SiteFooter />
     <CTASticky />
+    <ScrollTopButton />
   </div>
 </template>
 
@@ -25,6 +26,7 @@
 import SiteHeader from "./components/SiteHeader.vue";
 import SiteFooter from "./components/SiteFooter.vue";
 import CTASticky from "./components/CTASticky.vue";
+import ScrollTopButton from "./components/ScrollTopButton.vue";
 </script>
 
 <style>
@@ -37,7 +39,15 @@ import CTASticky from "./components/CTASticky.vue";
 .main{
   flex: 1;
   min-height: 0;
-  padding-bottom: 120px; /* space for the sticky CTA */
+  padding-top: 42px; /* desktop: reduced by ~1/3 */
+  padding-bottom: 40px; /* desktop: reduced by ~1/3 */
+}
+
+@media (max-width: 980px){
+  .main{
+    padding-top: 0;   /* keep mobile unchanged at top */
+    padding-bottom: 40px; /* mobile: less empty space before footer */
+  }
 }
 
 .page-wrapper{

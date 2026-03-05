@@ -60,10 +60,12 @@
       <div class="section-tight">
         <div class="card glow" v-glow>
           <h2 class="h2">¿No encajas en una categoría?</h2>
-          <p class="p">
+          <p class="p p_centrado">
             Con una factura y tu objetivo (ahorro, estabilidad o control) te diremos el plan de acción.
           </p>
-          <router-link to="/contacto" class="btn primary glow" v-glow>Cuéntanos tu caso</router-link>
+          <div class="clients-cta-center">
+            <router-link to="/contacto" class="btn primary glow" v-glow>Cuéntanos tu caso</router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -91,4 +93,6 @@ onMounted(() => {
   margin-bottom: 10px;
 }
 .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px; }
+.clients-cta-center{ display:flex; justify-content:center; margin-top: 14px; }
+.p_centrado{ text-align: center; }
 </style>

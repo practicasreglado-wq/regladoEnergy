@@ -1,6 +1,6 @@
 <!-- componente de Cabecera global en toda la web (App principal) -->
 <template>
-  <header class="header">
+  <header ref="headerRef" class="header">
     <div class="container header-inner">
       <router-link class="brand" to="/">
         <img class="logo" :src="logo" alt="Reglado Energy" />
@@ -60,7 +60,7 @@
             >▾</span>
           </router-link>
 
-          <div v-if="mobileClientsOpen" class="m-submenu">
+          <div v-show="mobileClientsOpen" class="m-submenu">
             <router-link @click="closeMobileMenu" to="/particulares" class="m-sublink">Particulares</router-link>
             <router-link @click="closeMobileMenu" to="/empresas" class="m-sublink">Empresas y Pymes</router-link>
             <router-link @click="closeMobileMenu" to="/administradores-fincas" class="m-sublink">Comunidades y Fincas</router-link>
@@ -84,13 +84,16 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import logo from "../assets/reglado-energy-logo.svg";
 import LoginModal from "./LoginModal.vue";
 
 const open = ref(false);
 const mobileClientsOpen = ref(false);
 const showLogin = ref(false);
+const headerRef = ref(null);
+const mobileMediaQuery = "(max-width: 980px)";
+let mediaQueryList;
 
 function closeMobileMenu() {
   open.value = false;
@@ -105,6 +108,36 @@ function toggleMobileMenu() {
 function closeLogin() {
   showLogin.value = false;
 }
+
+function handlePointerDown(event) {
+  if (!open.value) return;
+
+  const headerEl = headerRef.value;
+  if (headerEl && !headerEl.contains(event.target)) {
+    closeMobileMenu();
+  }
+}
+
+function handleMediaChange(event) {
+  if (!event.matches && open.value) {
+    closeMobileMenu();
+  }
+}
+
+onMounted(() => {
+  document.addEventListener("pointerdown", handlePointerDown);
+
+  mediaQueryList = window.matchMedia(mobileMediaQuery);
+  mediaQueryList.addEventListener("change", handleMediaChange);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("pointerdown", handlePointerDown);
+
+  if (mediaQueryList) {
+    mediaQueryList.removeEventListener("change", handleMediaChange);
+  }
+});
 </script>
 
 <style scoped>
@@ -184,10 +217,38 @@ function closeLogin() {
   transform: rotate(180deg);
 }
 /* Botón hamburguesa (solo móvil) */
-.burger{ display:none; background: transparent; border:none; cursor:pointer; width: 44px; height: 44px; border-radius: 14px; border: 1px solid rgba(242,197,61,.84); }
+.burger{
+  display:none;
+  background: transparent;
+  border:none;
+  cursor:pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
 .burger span{ display:block; height:2px; margin:6px 10px; background: rgba(233,238,246,.85); }
+.burger:focus,
+.burger:active{
+  background: transparent;
+  box-shadow: none;
+}
+.burger:focus-visible{
+  outline: 2px solid rgba(242,197,61,.7);
+  outline-offset: 2px;
+}
 /* Contenedor desplegable del menú móvil */
-.mobile{ border-top: 1px solid rgba(255,255,255,.08); background: rgba(15, 16, 11, 0.85); }
+.mobile{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 70;
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: rgba(15, 16, 11, 0.95);
+  box-shadow: 0 20px 40px rgba(0,0,0,.35);
+}
 .mobile-inner{ padding: 14px 0 18px; display:flex; flex-direction:column; gap: 10px; }
 /* Grupo "Clientes" en móvil */
 .m-group{ display:flex; flex-direction:column; gap: 8px; }
@@ -197,6 +258,7 @@ function closeLogin() {
 .m-link-caret{
   position: relative;
   padding-right: 40px;
+  -webkit-tap-highlight-color: transparent;
 }
 /* Flecha del desplegable en móvil */
 .m-caret-inline{
@@ -206,6 +268,7 @@ function closeLogin() {
   transform: translateY(-50%);
   display: inline-block;
   color: rgba(242,197,61,.95);
+  -webkit-tap-highlight-color: transparent;
 }
 .m-caret-inline.open{
   transform: translateY(-50%) rotate(180deg);

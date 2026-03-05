@@ -6,7 +6,7 @@
         <div class="badge" v-reveal="{ from: 'left', delay: 80 }">Recursos</div>
         <h1 class="h1" v-reveal="{ from: 'up', delay: 120 }">Análisis, guías y contenidos claros sobre mercado eléctrico, cambios regulatorios y estrategias de ahorro.</h1>
         <p class="p" v-reveal="{ from: 'right', delay: 170 }">
-          La factura eléctrica no se “lee”: se audita. Distinguir costes regulados de costes negociables es la base para detectar sobrecostes y optimizar la contratación.
+          La factura eléctrica no se “lee”, se audita. Distinguir costes regulados de costes negociables es la base para detectar sobrecostes y optimizar la contratación.
         </p>
         <div class="cta-row" v-reveal="{ from: 'up', delay: 220 }">
           <router-link to="/contacto" class="btn primary glow" v-glow v-reveal="{ from: 'left', delay: 250 }">Quiero un análisis</router-link>

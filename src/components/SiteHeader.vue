@@ -221,8 +221,8 @@ function closeLogin() {
 .m-sublink{
   padding: 10px 12px;
   border-radius: 12px;
-  border: 1px solid rgba(242,197,61,.62);
-  border-bottom: 1px solid rgba(242,197,61,.62);
+  border: 1px solid rgba(242,197,61,.52);
+  border-bottom: 1px solid rgba(242,197,61,.52);
   background: transparent;
   color: rgba(233,238,246,.9);
   font-size: 14px;
@@ -230,8 +230,8 @@ function closeLogin() {
 /* Estado activo en subenlaces: marca inferior dorada */
 .m-sublink.router-link-active{
   color: rgba(233,238,246,.9);
-  border-color: rgba(242,197,61,.62);
-  border-bottom-color: rgba(242,197,61,.62);
+  border-color: rgba(242,197,61,.52);
+  border-bottom-color: rgba(242,197,61,.52);
   background: rgba(242,197,61,.16);
 }
 /* Estilo base de enlaces principales en móvil */

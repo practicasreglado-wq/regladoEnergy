@@ -47,7 +47,9 @@
                 Si necesitas un enfoque de control continuo (empresa, cartera de suministros o sector público), definimos un plan de revisiones
                 y alertas para evitar desviaciones.
               </p>
-              <router-link to="/contacto" class="btn primary glow" v-glow v-reveal="{ from: 'up', delay: 220 }">Hablar con un técnico</router-link>
+              <div style="text-align: right;">
+                <router-link to="/contacto" class="btn primary glow" v-glow v-reveal="{ from: 'up', delay: 220 }">Hablar con un técnico</router-link>
+              </div>
             </div>
           </div>
         </div>

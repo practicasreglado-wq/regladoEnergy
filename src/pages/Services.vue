@@ -22,12 +22,12 @@
             independiente y técnico.
           </p>
           <div class="grid grid-2" style="margin-top:12px;">
-            <FeatureCard icon="🧾" title="Auditoría de facturas" text="Eléctricas y de gas, para detectar sobrecostes e ineficiencias." />
-            <FeatureCard icon="⚙️" title="Optimización de potencia" text="Adecuación al consumo real para evitar pagar de más o penalizaciones." />
-            <FeatureCard icon="🧲" title="Reactiva y penalizaciones" text="Análisis y medidas correctoras cuando aplique." />
-            <FeatureCard icon="📈" title="Control del consumo" text="Seguimiento para anticipar desviaciones y sostener el ahorro." />
-            <FeatureCard icon="📊" title="Comparativa objetiva" text="Alternativas sin conflicto de interés y con criterios técnico‑económicos." />
-            <FeatureCard icon="✅" title="Acompañamiento" text="Ejecución y verificación de la correcta aplicación en facturación." />
+            <FeatureCard icon="src/assets/Auditorias.svg" title="Auditoría de facturas" text="Eléctricas y de gas, para detectar sobrecostes e ineficiencias." />
+            <FeatureCard icon="src/assets/Continue.svg" title="Optimización de potencia" text="Adecuación al consumo real para evitar pagar de más o penalizaciones." />
+            <FeatureCard icon="src/assets/Correction.svg" title="Reactiva y penalizaciones" text="Análisis y medidas correctoras cuando aplique." />
+            <FeatureCard icon="src/assets/Analytic.svg" title="Control del consumo" text="Seguimiento para anticipar desviaciones y sostener el ahorro." />
+            <FeatureCard icon="src/assets/Compare.svg" title="Comparativa objetiva" text="Alternativas sin conflicto de interés y con criterios técnico‑económicos." />
+            <FeatureCard icon="src/assets/DoubleTick.svg" title="Acompañamiento" text="Ejecución y verificación de la correcta aplicación en facturación." />
           </div>
         </div>
       </div>
@@ -60,16 +60,16 @@
             Acompañamos a las administraciones en la correcta gestión energética, combinando criterios técnicos, económicos y de cumplimiento normativo.
           </p>
           <div class="grid grid-2" style="margin-top:12px;">
-            <FeatureCard icon="📄" title="Análisis técnico de contratos"
+            <FeatureCard icon="src/assets/Search.svg" title="Análisis técnico de contratos"
               text="Potencias, precios, penalizaciones y condiciones."
             />
-            <FeatureCard icon="⚖️" title="Apoyo técnico en licitación"
+            <FeatureCard icon="src/assets/Balance.svg" title="Apoyo técnico en licitación"
               text="Comparativas objetivas y criterios de decisión técnico‑económicos."
             />
-            <FeatureCard icon="🔍" title="Revisión de suministros"
+            <FeatureCard icon="src/assets/Constan.svg" title="Revisión de suministros"
               text="Supervisión de la correcta aplicación de condiciones adjudicadas."
             />
-            <FeatureCard icon="🧮" title="Seguimiento presupuestario"
+            <FeatureCard icon="src/assets/Repeat.svg" title="Seguimiento presupuestario"
               text="Revisiones periódicas para evitar desviaciones y mejorar eficiencia."
             />
           </div>

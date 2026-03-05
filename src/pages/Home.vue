@@ -82,27 +82,27 @@
       </p>
 
       <div class="grid grid-3" style="margin-top:18px;">
-        <FeatureCard icon="💶" title="Ahorro económico"
+        <FeatureCard icon="src/assets/PrecioBajo.svg" title="Ahorro económico"
           text="Optimización técnica de contratos, potencias y condiciones (no cambios indiscriminados de comercializadora)."
           :reveal="{ from: 'left', delay: 60 }"
         />
-        <FeatureCard icon="🔎" title="Transparencia"
+        <FeatureCard icon="src/assets/Transparency.svg" title="Transparencia"
           text="Impacto económico claro antes de ejecutar cambios, sin letra pequeña."
           :reveal="{ from: 'up', delay: 90 }"
         />
-        <FeatureCard icon="🌱" title="Energías renovables"
+        <FeatureCard icon="src/assets/EcoEnergi.svg" title="Energías renovables"
           text="Priorizamos soluciones sostenibles cuando son técnica y económicamente viables."
           :reveal="{ from: 'right', delay: 120 }"
         />
-        <FeatureCard icon="🎯" title="Seguimiento de objetivos"
+        <FeatureCard icon="src/assets/Financiacion.svg" title="Seguimiento de objetivos"
           text="Revisiones periódicas para sostener ahorros y corregir desviaciones."
           :reveal="{ from: 'left', delay: 150 }"
         />
-        <FeatureCard icon="🤝" title="Acompañamiento continuo"
+        <FeatureCard icon="src/assets/Shake.svg" title="Acompañamiento continuo"
           text="Soporte durante toda la vida del contrato."
           :reveal="{ from: 'up', delay: 180 }"
         />
-        <FeatureCard icon="🛡️" title="Independencia"
+        <FeatureCard icon="src/assets/Independency.svg" title="Independencia"
           text="Actuamos como asesores, defendiendo los intereses del cliente frente al mercado."
           :reveal="{ from: 'right', delay: 210 }"
         />
@@ -118,23 +118,23 @@
       </p>
 
       <div class="grid grid-3" style="margin-top:18px;">
-        <FeatureCard icon="🧾" title="Análisis de facturas y consumo"
+        <FeatureCard icon="src/assets/DocumentSearch.svg" title="Análisis de facturas y consumo"
           text="Detección de ineficiencias, sobrecostes y riesgos contractuales."
           :reveal="{ from: 'left', delay: 60 }"
         />
-        <FeatureCard icon="⚙️" title="Optimización de potencias y tarifas"
+        <FeatureCard icon="src/assets/Optimizacion.svg" title="Optimización de potencias y tarifas"
           text="Adecuación a consumo real para evitar pagar de más o incurrir en penalizaciones."
           :reveal="{ from: 'up', delay: 90 }"
         />
-        <FeatureCard icon="📊" title="Comparativa objetiva de opciones"
+        <FeatureCard icon="src/assets/Compare.svg" title="Comparativa objetiva de opciones"
           text="Evaluación sin conflicto de interés y con criterios técnico‑económicos."
           :reveal="{ from: 'right', delay: 120 }"
         />
-        <FeatureCard icon="✅" title="Contratación y seguimiento"
+        <FeatureCard icon="src/assets/Contract.svg" title="Contratación y seguimiento"
           text="Acompañamiento en la ejecución y verificación de la correcta aplicación en facturación."
           :reveal="{ from: 'left', delay: 150 }"
         />
-        <FeatureCard icon="🔁" title="Soporte y revisión periódica"
+        <FeatureCard icon="src/assets/CustomerService.svg" title="Soporte y revisión periódica"
           text="Mantenimiento del control del suministro y adaptación a cambios del mercado."
           :reveal="{ from: 'up', delay: 180 }"
         />

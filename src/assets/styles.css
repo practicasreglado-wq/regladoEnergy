@@ -41,6 +41,7 @@ body {
   margin: 0;
   position: relative;
   overflow-x: hidden;
+  background-color: var(--bg);
   background:
     radial-gradient(
       900px 500px at 20% 10%,
@@ -53,6 +54,7 @@ body {
       transparent 55%
     ),
     var(--bg);
+  background-repeat: no-repeat, no-repeat, repeat;
   color: var(--text);
   font-family:
     "Century Gothic",

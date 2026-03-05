@@ -27,7 +27,15 @@
         </div>
         <router-link to="/recursos" class="nav-link">Recursos</router-link>
         <router-link to="/sobre-nosotros" class="nav-link">Sobre nosotros</router-link>
-        <router-link to="/contacto" class="btn primary glow" v-glow>Análisis gratuito</router-link>
+        <!-- login button replaces free analysis link -->
+        <button
+          class="btn primary glow"
+          v-glow
+          @click="showLogin = true"
+          aria-label="Iniciar sesión"
+        >
+          Iniciar sesión
+        </button>
       </nav>
 
       <button class="burger" @click="toggleMobileMenu" aria-label="Abrir menú">
@@ -36,6 +44,7 @@
     </div>
 
     <!-- Menú mobile -->
+    <LoginModal v-model="showLogin" />
     <div v-if="open" class="mobile">
       <div class="container mobile-inner">
         <router-link @click="closeMobileMenu" to="/servicios" class="m-link">Servicios</router-link>
@@ -62,7 +71,13 @@
         <router-link @click="closeMobileMenu" to="/recursos" class="m-link">Recursos</router-link>
         <router-link @click="closeMobileMenu" to="/sobre-nosotros" class="m-link">Sobre nosotros</router-link>
         <router-link @click="closeMobileMenu" to="/area-clientes" class="m-link">Área de clientes</router-link>
-        <router-link @click="closeMobileMenu" to="/contacto" class="btn primary glow" v-glow style="width:100%">Análisis gratuito</router-link>
+        <!-- mobile login button -->
+        <button
+          @click="(closeMobileMenu(), showLogin = true)"
+          class="btn primary glow" v-glow style="width:100%"
+        >
+          Iniciar sesión
+        </button>
       </div>
     </div>
   </header>
@@ -71,8 +86,11 @@
 <script setup>
 import { ref } from "vue";
 import logo from "../assets/reglado-energy-logo.svg";
+import LoginModal from "./LoginModal.vue";
+
 const open = ref(false);
 const mobileClientsOpen = ref(false);
+const showLogin = ref(false);
 
 function closeMobileMenu() {
   open.value = false;
@@ -82,6 +100,10 @@ function closeMobileMenu() {
 function toggleMobileMenu() {
   open.value = !open.value;
   if (!open.value) mobileClientsOpen.value = false;
+}
+
+function closeLogin() {
+  showLogin.value = false;
 }
 </script>
 

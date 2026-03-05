@@ -17,16 +17,19 @@
       </div>
 </main>
     <SiteFooter />
-    <CTASticky />
-    <ScrollTopButton />
+    <CTASticky @close="isCTAClosed = true" />
+    <ScrollTopButton :isCTAClosed="isCTAClosed" />
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import SiteHeader from "./components/SiteHeader.vue";
 import SiteFooter from "./components/SiteFooter.vue";
 import CTASticky from "./components/CTASticky.vue";
 import ScrollTopButton from "./components/ScrollTopButton.vue";
+
+const isCTAClosed = ref(false);
 </script>
 
 <style>

@@ -26,7 +26,7 @@
   border: 4px solid rgba(242,197,61,.5);  /* increased opacity for more visibility */
   backdrop-filter: blur(12px);
   border-radius: 20px;
-  padding: 12px 12px;
+  padding: 8px 12px;
   box-shadow: 0 18px 60px rgba(0,0,0,.55), inset 0 0 0 2px #fff; /* inset white border visible inside */
 }
 

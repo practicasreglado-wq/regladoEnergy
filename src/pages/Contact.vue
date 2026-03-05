@@ -11,12 +11,12 @@
           </p>
 
           <div class="card" style="margin-top:14px;">
-            <h2 class="h2" style="margin-bottom:10px;">Estudios personalizados</h2>
+            <h2 class="h2new" style="margin-bottom:10px;">Estudios personalizados</h2>
             <p class="p">
               Cada cliente tiene un consumo distinto. Realizamos estudios personalizados en función del perfil y las necesidades reales.
             </p>
 
-            <h2 class="h2" style="margin:14px 0 10px;">Subida de facturas</h2>
+            <h2 class="h2new" style="margin:14px 0 10px;">Subida de facturas</h2>
             <p class="p">
               Sube tu factura en PDF. Realizaremos un análisis previo y te contactaremos para comentarte los resultados y las opciones de mejora.
             </p>

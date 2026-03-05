@@ -25,16 +25,16 @@
         <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 70 }">
           <h2 class="h2" v-reveal="{ from: 'up', delay: 110 }">Qué hacemos</h2>
           <div class="grid grid-2" style="margin-top:12px;">
-            <FeatureCard icon="src/assets/Auditorias.svg" title="Auditoría de facturas"
+            <FeatureCard icon="🧾" title="Auditoría de facturas"
               text="Detección de sobrecostes, errores y riesgos contractuales."
             />
-            <FeatureCard icon="src/assets/Optimizacion.svg" title="Optimización de potencia"
+            <FeatureCard icon="⚙️" title="Optimización de potencia"
               text="Ajuste por periodos para evitar capacidad ociosa o penalizaciones."
             />
-            <FeatureCard icon="src/assets/Analytic.svg" title="Control y seguimiento"
+            <FeatureCard icon="📈" title="Control y seguimiento"
               text="Revisión periódica para mantener el ahorro y anticipar desviaciones."
             />
-            <FeatureCard icon="src/assets/Brain.svg" title="Decisiones justificadas"
+            <FeatureCard icon="🧠" title="Decisiones justificadas"
               text="Medidas priorizadas con impacto económico estimado."
             />
           </div>

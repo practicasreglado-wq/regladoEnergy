@@ -1,20 +1,11 @@
 <!-- componente de botón redondo para subir al inicio de la página. -->
 <template>
-  <button class="scroll-top glow" v-glow type="button" aria-label="Volver arriba" @click="scrollToTop" :class="{ 'cta-closed': !ctaVisible }">
+  <button class="scroll-top glow" v-glow type="button" aria-label="Volver arriba" @click="scrollToTop">
     <span class="arrow" aria-hidden="true">&uarr;</span>
   </button>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
-
-defineProps({
-  ctaVisible: {
-    type: Boolean,
-    default: true,
-  },
-});
-
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -24,7 +15,7 @@ function scrollToTop() {
 .scroll-top {
   position: fixed;
   right: 30px;
-  bottom: 29px;
+  bottom: 32px;
   z-index: 70;
   width: 45px;
   height: 45px;
@@ -53,17 +44,19 @@ function scrollToTop() {
   background: rgba(242, 197, 61, .62);
 }
 
-.scroll-top.cta-closed {
-  bottom: 10px;
-  right: 10px;
+.arrow {
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 800;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 980px) {
   .scroll-top {
     right: 14px;
     bottom: 125px;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
   }
 
 }
@@ -72,8 +65,8 @@ function scrollToTop() {
   .scroll-top {
     right: 20px;
     bottom: 90px;
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
   }
 }
 
@@ -81,16 +74,8 @@ function scrollToTop() {
   .scroll-top {
     right: 20px;
     bottom: 125px;
-    width: 45px;
-    height: 45px;
-  }
-}
-@media (min-width: 200px) and (max-width: 399px) {
-  .scroll-top {
-    right: 20px;
-    bottom: 156px;
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
   }
 }
 </style>

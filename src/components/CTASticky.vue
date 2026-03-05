@@ -1,11 +1,7 @@
 <!-- componente de CTA flotante en toda la web (App principal) -->
 <template>
-  <div v-if="isVisible" class="sticky">
+  <div class="sticky">
     <div class="container inner glow" v-glow>
-      <button class="close-btn" @click="closeCTA" aria-label="Cerrar">
-        <span></span>
-        <span></span>
-      </button>
       <div class="left">
         <div class="dot"></div>
         <div>
@@ -20,19 +16,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from "vue";
-
-const emit = defineEmits(['close']);
-
-const isVisible = ref(true);
-
-const closeCTA = () => {
-  isVisible.value = false;
-  emit('close');
-};
-</script>
 
 <style scoped>
 .sticky{ position: fixed; left:0; right:0; bottom: 14px; z-index: 60; pointer-events: none; }
@@ -56,45 +39,7 @@ const closeCTA = () => {
 .dot{ width: 10px; height: 10px; border-radius: 999px; background: var(--gold); box-shadow: 0 0 0 6px rgba(242,197,61,.12); }
 .t{ font-weight: 800; }
 .s{ color: rgba(233,238,246,.72); font-size: 13px; }
-.right{ display:flex; gap: 10px; margin-right: 40px; }
-
-/* close button styles */
-.close-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  transition: background 0.2s;
-  z-index: 10;
-}
-
-.close-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.close-btn span {
-  position: absolute;
-  width: 14px;
-  height: 2px;
-  background: rgba(233, 238, 246, 0.8);
-  border-radius: 1px;
-}
-
-.close-btn span:first-child {
-  transform: rotate(45deg);
-}
-
-.close-btn span:last-child {
-  transform: rotate(-45deg);
-}
+.right{ display:flex; gap: 10px; }
 
 /* special style for whatsapp button */
 .whatsapp{
@@ -111,7 +56,7 @@ const closeCTA = () => {
   .inner{ flex-direction: column; align-items: stretch; }
   .t{ font-size: 14px; line-height: 1.25; }
   .s{ font-size: 12px; }
-  .right{ gap: 8px; margin-right: 0; }
+  .right{ gap: 8px; }
   .right .btn{
     width: 100%;
     min-height: 38px;

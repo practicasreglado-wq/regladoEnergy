@@ -34,27 +34,13 @@
   display: none;
 }
 
-/* moving golden rays effect */
-.inner::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, transparent 25%, rgba(242,197,61,.15) 25%, rgba(242,197,61,.15) 50%, transparent 50%, transparent 75%, rgba(242,197,61,.15) 75%, rgba(242,197,61,.15));
-  background-size: 60px 60px;
-  animation: moveRays 5s linear infinite;
-  border-radius: inherit;
-  pointer-events: none;
-}
 
-@keyframes moveRays{
-  from{background-position:0 0;}
-  to{background-position:60px 60px;}
-}
 .left{ display:flex; align-items:center; gap: 12px; }
 .dot{ width: 10px; height: 10px; border-radius: 999px; background: var(--gold); box-shadow: 0 0 0 6px rgba(242,197,61,.12); }
 .t{ font-weight: 800; }
 .s{ color: rgba(233,238,246,.72); font-size: 13px; }
 .right{ display:flex; gap: 10px; }
+
 /* special style for whatsapp button */
 .whatsapp{
   background: rgba(37, 211, 102, 0.85); /* whatsapp green with transparency */
@@ -66,6 +52,17 @@
   color: #fff !important;
   border-color: rgba(37, 211, 102, 0.85) !important;
 }
-@media (max-width: 980px){ .inner{ flex-direction: column; align-items: stretch; } .right .btn{ width: 100%; } }
-@media (max-width: 980px){ .inner{ flex-direction: column; align-items: stretch; } .right .btn{ width: 100%; } }
+@media (max-width: 980px){
+  .inner{ flex-direction: column; align-items: stretch; }
+  .t{ font-size: 14px; line-height: 1.25; }
+  .s{ font-size: 12px; }
+  .right{ gap: 8px; }
+  .right .btn{
+    width: 100%;
+    min-height: 38px;
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 12px;
+  }
+}
 </style>

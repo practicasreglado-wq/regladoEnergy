@@ -1,0 +1,68 @@
+<!-- componente de botón redondo para subir al inicio de la página. -->
+<template>
+  <button
+    class="scroll-top glow"
+    v-glow
+    type="button"
+    aria-label="Volver arriba"
+    @click="scrollToTop"
+  >
+    <span class="arrow" aria-hidden="true">&uarr;</span>
+  </button>
+</template>
+
+<script setup>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+</script>
+
+<style scoped>
+.scroll-top{
+  position: fixed;
+  right: 30px;
+  bottom: 25px;
+  z-index: 70;
+  width: 45px;
+  height: 45px;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,.92);
+  background: rgba(242,197,61,.48);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 14px 34px rgba(0,0,0,.34);
+  backdrop-filter: blur(6px);
+}
+
+.scroll-top::before{
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  border: 1px solid rgba(242,197,61,.95);
+  pointer-events: none;
+}
+
+.scroll-top:hover{
+  background: rgba(242,197,61,.62);
+}
+
+.arrow{
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 800;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 980px){
+  .scroll-top{
+    right: 14px;
+    bottom: 140px;
+    width: 50px;
+    height: 50px;
+  }
+}
+</style>

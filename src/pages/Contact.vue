@@ -51,7 +51,7 @@
 
             <div class="field">
               <label>Factura PDF (opcional en demo)</label>
-              <input type="file" accept="application/pdf" @change="onFile" />
+              <input type="file" accept="application/pdf" @change="onFile" class="file"/>
             </div>
 
             <button class="btn primary glow" v-glow type="submit">Enviar solicitud</button>
@@ -109,4 +109,11 @@ input, textarea{
 textarea{ min-height: 110px; resize: vertical; }
 input:focus, textarea:focus{ border-color: rgba(242,197,61,.35); box-shadow: 0 0 0 4px rgba(242,197,61,.10); }
 .sent{ margin-top: 14px; padding: 14px; border-radius: var(--radius-md); border:1px solid rgba(242,197,61,.32); background: rgba(242,197,61,.08); }
+
+.file::file-selector-button{
+  display: none;
+}
+.file:hover{
+  cursor: pointer;
+}
 </style>

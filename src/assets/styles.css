@@ -74,7 +74,7 @@ body::before {
   transform: translateY(-50%);
   width: min(54vw, 680px);
   aspect-ratio: 1 / 1;
-  background: url("./reglado-energy-logo.png") center / contain no-repeat;
+  background: url("./reglado-energy-logo.svg") center / contain no-repeat;
   opacity: 0.17;
   filter: blur(px) saturate(0.9);
   pointer-events: none;
@@ -389,30 +389,45 @@ a {
 
 /* reveal */
 .reveal {
+  --reveal-x: 0px;
+  --reveal-y: 16px;
+  --reveal-bx: 0px;
+  --reveal-by: 0px;
+  --reveal-duration: 520ms;
+  --reveal-scale: 0.985;
   opacity: 0;
-  transform: translateY(16px);
-  filter: blur(6px);
-  transition:
-    opacity 700ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    filter 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  transition-delay: var(--reveal-delay, 0ms);
-  will-change: transform, opacity, filter;
+  transform: translate3d(var(--reveal-x), var(--reveal-y), 0) scale(var(--reveal-scale));
+  will-change: transform, opacity;
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+  animation: revealPop var(--reveal-duration) var(--reveal-delay, 0ms) both;
+}
+
+@keyframes revealPop {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--reveal-x), var(--reveal-y), 0) scale(var(--reveal-scale));
+  }
+  72% {
+    opacity: 1;
+    transform: translate3d(var(--reveal-bx), var(--reveal-by), 0) scale(1.012);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
 }
 
 /* microinteractions */
-.card,
-.btn,
-.nav-link,
-.m-link,
-.input,
-.select,
-.textarea {
+.card:not(.reveal),
+.btn:not(.reveal),
+.nav-link:not(.reveal),
+.m-link:not(.reveal),
+.input:not(.reveal),
+.select:not(.reveal),
+.textarea:not(.reveal) {
   transition:
     transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
     background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -545,14 +560,12 @@ summary:focus-visible {
   min-height: 0;
 }
 
-/* FORCE-VISIBLE: never allow animations to blank the site */
-.reveal {
-  opacity: 1 !important;
-  transform: none !important;
-  filter: none !important;
-}
-.reveal.is-visible {
-  opacity: 1 !important;
-  transform: none !important;
-  filter: none !important;
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
 }

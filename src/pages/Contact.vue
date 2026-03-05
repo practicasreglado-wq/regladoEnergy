@@ -3,61 +3,61 @@
   <section class="section">
     <div class="container">
       <div class="grid grid-2">
-        <div class="card soft glow" v-glow>
-          <div class="badge">Contacto</div>
-          <h1 class="h1">Realizamos un análisis gratuito de facturas.</h1>
-          <p class="p">
+        <div class="card soft glow" v-glow v-reveal="{ from: 'left', delay: 50 }">
+          <div class="badge" v-reveal="{ from: 'up', delay: 80 }">Contacto</div>
+          <h1 class="h1" v-reveal="{ from: 'up', delay: 120 }">Realizamos un análisis gratuito de facturas.</h1>
+          <p class="p" v-reveal="{ from: 'right', delay: 170 }">
             Completa el formulario o sube tu factura en PDF y te llamamos con los resultados.
           </p>
 
-          <div class="card" style="margin-top:14px;">
-            <h2 class="h2" style="margin-bottom:10px;">Estudios personalizados</h2>
-            <p class="p">
+          <div class="card" style="margin-top:14px;" v-reveal="{ from: 'up', delay: 210 }">
+            <h2 class="h2" style="margin-bottom:10px;" v-reveal="{ from: 'up', delay: 240 }">Estudios personalizados</h2>
+            <p class="p" v-reveal="{ from: 'up', delay: 270 }">
               Cada cliente tiene un consumo distinto. Realizamos estudios personalizados en función del perfil y las necesidades reales.
             </p>
 
-            <h2 class="h2" style="margin:14px 0 10px;">Subida de facturas</h2>
-            <p class="p">
+            <h2 class="h2" style="margin:14px 0 10px;" v-reveal="{ from: 'up', delay: 300 }">Subida de facturas</h2>
+            <p class="p" v-reveal="{ from: 'up', delay: 330 }">
               Sube tu factura en PDF. Realizaremos un análisis previo y te contactaremos para comentarte los resultados y las opciones de mejora.
             </p>
           </div>
         </div>
 
-        <div class="card glow" v-glow>
-          <h2 class="h2">Formulario (demo)</h2>
-          <p class="p">En esta demo el envío es simulado. En producción se conecta a tu backend/CRM o servicio de formularios.</p>
+        <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 70 }">
+          <h2 class="h2" v-reveal="{ from: 'up', delay: 100 }">Formulario (demo)</h2>
+          <p class="p" v-reveal="{ from: 'up', delay: 130 }">En esta demo el envío es simulado. En producción se conecta a tu backend/CRM o servicio de formularios.</p>
 
-          <form class="form" @submit.prevent="submit">
+          <form class="form" @submit.prevent="submit" v-reveal="{ from: 'up', delay: 160 }">
             <div class="grid grid-2">
-              <div class="field">
+              <div class="field" v-reveal="{ from: 'left', delay: 190 }">
                 <label>Nombre *</label>
                 <input v-model="f.name" required placeholder="Tu nombre" />
               </div>
-              <div class="field">
+              <div class="field" v-reveal="{ from: 'right', delay: 220 }">
                 <label>Teléfono *</label>
                 <input v-model="f.phone" required placeholder="+34 ..." />
               </div>
             </div>
 
-            <div class="field">
+            <div class="field" v-reveal="{ from: 'up', delay: 250 }">
               <label>Email *</label>
               <input v-model="f.email" required type="email" placeholder="tu@email.com" />
             </div>
 
-            <div class="field">
+            <div class="field" v-reveal="{ from: 'up', delay: 280 }">
               <label>Mensaje (opcional)</label>
               <textarea v-model="f.msg" placeholder="Cuéntanos tu caso (tarifa, potencia, incidencias, etc.)"></textarea>
             </div>
 
-            <div class="field">
+            <div class="field" v-reveal="{ from: 'up', delay: 310 }">
               <label>Factura PDF (opcional en demo)</label>
               <input type="file" accept="application/pdf" @change="onFile" class="file"/>
             </div>
 
-            <button class="btn primary glow" v-glow type="submit">Enviar solicitud</button>
+            <button class="btn primary glow" v-glow v-reveal="{ from: 'up', delay: 340 }" type="submit">Enviar solicitud</button>
           </form>
 
-          <div v-if="sent" class="sent">
+          <div v-if="sent" class="sent" v-reveal="{ from: 'up', delay: 100 }">
             <strong>Solicitud recibida (demo).</strong> Te contactaremos lo antes posible.
           </div>
         </div>

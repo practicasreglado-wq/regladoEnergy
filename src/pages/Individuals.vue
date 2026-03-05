@@ -3,31 +3,31 @@
   <section class="section">
     <div class="container">
       <div class="grid grid-2">
-        <div class="card soft glow" v-glow>
-          <div class="badge">Particulares</div>
-          <h1 class="h1">Facturas elevadas, tarifas mal contratadas o sensación de que “te cobran de más”.</h1>
-          <p class="p">
+        <div class="card soft glow" v-glow v-reveal="{ from: 'left', delay: 50 }">
+          <div class="badge" v-reveal="{ from: 'up', delay: 80 }">Particulares</div>
+          <h1 class="h1" v-reveal="{ from: 'up', delay: 120 }">Facturas elevadas, tarifas mal contratadas o sensación de que “te cobran de más”.</h1>
+          <p class="p" v-reveal="{ from: 'right', delay: 170 }">
             Analizamos tu caso, optimizamos tu contrato y te explicamos con claridad qué estás pagando y por qué.
           </p>
-          <div class="cta-row">
-            <router-link to="/contacto" class="btn primary glow" v-glow>Enviar factura</router-link>
-            <router-link to="/recursos" class="btn glow" v-glow>Ver recursos</router-link>
+          <div class="cta-row" v-reveal="{ from: 'up', delay: 220 }">
+            <router-link to="/contacto" class="btn primary glow" v-glow v-reveal="{ from: 'left', delay: 250 }">Enviar factura</router-link>
+            <router-link to="/recursos" class="btn glow" v-glow v-reveal="{ from: 'right', delay: 280 }">Ver recursos</router-link>
           </div>
         </div>
 
-        <div class="card glow" v-glow>
-          <h2 class="h2">Qué revisamos</h2>
-          <ul class="bullets">
+        <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 70 }">
+          <h2 class="h2" v-reveal="{ from: 'up', delay: 100 }">Qué revisamos</h2>
+          <ul class="bullets" v-reveal="{ from: 'up', delay: 140 }">
             <li><strong>Potencia contratada:</strong> si pagas por capacidad que no necesitas.</li>
             <li><strong>Tarifa y discriminación horaria:</strong> si encaja con tus hábitos.</li>
             <li><strong>Condiciones de contrato:</strong> permanencias, servicios añadidos, cambios de precio.</li>
             <li><strong>Conceptos de factura:</strong> detección de inconsistencias y sobrecostes.</li>
           </ul>
 
-          <div class="hr"></div>
+          <div class="hr" v-reveal="{ from: 'up', delay: 170 }"></div>
 
-          <h2 class="h2">Qué te llevas</h2>
-          <ul class="bullets">
+          <h2 class="h2" v-reveal="{ from: 'up', delay: 200 }">Qué te llevas</h2>
+          <ul class="bullets" v-reveal="{ from: 'up', delay: 240 }">
             <li>Explicación clara y comprensible de tu factura.</li>
             <li>Propuesta de optimización con ahorro estimado (sin letra pequeña).</li>
             <li>Gestión del cambio si procede y verificación de la primera factura.</li>
@@ -37,10 +37,10 @@
       </div>
 
       <div class="section-tight">
-        <div class="card soft glow" v-glow>
-          <h2 class="h2">Siguiente paso</h2>
-          <p class="p">Realizamos un análisis gratuito de facturas. Déjanos tus datos o sube tu factura en PDF y te llamamos con los resultados.</p>
-          <router-link to="/contacto" class="btn primary glow" v-glow>Solicitar análisis gratuito</router-link>
+        <div class="card soft glow" v-glow v-reveal="{ from: 'up', delay: 80 }">
+          <h2 class="h2" v-reveal="{ from: 'up', delay: 120 }">Siguiente paso</h2>
+          <p class="p" v-reveal="{ from: 'up', delay: 160 }">Realizamos un análisis gratuito de facturas. Déjanos tus datos o sube tu factura en PDF y te llamamos con los resultados.</p>
+          <router-link to="/contacto" class="btn primary glow" v-glow v-reveal="{ from: 'up', delay: 200 }">Solicitar análisis gratuito</router-link>
         </div>
       </div>
     </div>

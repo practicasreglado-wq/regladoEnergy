@@ -3,21 +3,21 @@
   <section class="section">
     <div class="container">
       <div class="grid grid-2">
-        <div class="card soft glow" v-glow>
-          <div class="badge">Servicios</div>
-          <h1 class="h1">Analizamos, optimizamos y gestionamos tus suministros energéticos con criterios técnicos y económicos.</h1>
-          <p class="p">
+        <div class="card soft glow" v-glow v-reveal="{ from: 'left', delay: 50 }">
+          <div class="badge" v-reveal="{ from: 'up', delay: 80 }">Servicios</div>
+          <h1 class="h1" v-reveal="{ from: 'up', delay: 120 }">Analizamos, optimizamos y gestionamos tus suministros energéticos con criterios técnicos y económicos.</h1>
+          <p class="p" v-reveal="{ from: 'right', delay: 170 }">
             No vendemos tarifas: proponemos decisiones justificadas y verificamos su aplicación con seguimiento periódico.
           </p>
-          <div class="cta-row">
-            <router-link to="/contacto" class="btn primary glow" v-glow>Solicitar análisis gratuito</router-link>
-            <router-link to="/clientes" class="btn glow" v-glow>Ver perfiles</router-link>
+          <div class="cta-row" v-reveal="{ from: 'up', delay: 220 }">
+            <router-link to="/contacto" class="btn primary glow" v-glow v-reveal="{ from: 'left', delay: 250 }">Solicitar análisis gratuito</router-link>
+            <router-link to="/clientes" class="btn glow" v-glow v-reveal="{ from: 'right', delay: 280 }">Ver perfiles</router-link>
           </div>
         </div>
 
-        <div class="card glow" v-glow>
-          <div class="h2">Consultoría energética</div>
-          <p class="p">
+        <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 70 }">
+          <div class="h2" v-reveal="{ from: 'up', delay: 100 }">Consultoría energética</div>
+          <p class="p" v-reveal="{ from: 'up', delay: 140 }">
             Servicio orientado a la reducción de costes, la mejora contractual y el control continuo del suministro, actuando desde un enfoque
             independiente y técnico.
           </p>
@@ -33,30 +33,30 @@
       </div>
 
       <div class="section-tight">
-        <div class="card soft glow" v-glow>
-          <h2 class="h2">Cómo trabajamos</h2>
+        <div class="card soft glow" v-glow v-reveal="{ from: 'up', delay: 70 }">
+          <h2 class="h2" v-reveal="{ from: 'up', delay: 100 }">Cómo trabajamos</h2>
           <div class="grid grid-2" style="margin-top:10px;">
-            <ul class="bullets">
+            <ul class="bullets" v-reveal="{ from: 'left', delay: 130 }">
               <li>Revisión integral de contrato, facturas y consumo.</li>
               <li>Medidas priorizadas por impacto económico y viabilidad técnica.</li>
               <li>Ejecución con control de calidad: verificación en facturación.</li>
               <li>Revisiones periódicas y seguimiento de objetivos.</li>
             </ul>
-            <div>
-              <p class="p">
+            <div v-reveal="{ from: 'right', delay: 160 }">
+              <p class="p" v-reveal="{ from: 'up', delay: 190 }">
                 Si necesitas un enfoque de control continuo (empresa, cartera de suministros o sector público), definimos un plan de revisiones
                 y alertas para evitar desviaciones.
               </p>
-              <router-link to="/contacto" class="btn primary glow" v-glow>Hablar con un técnico</router-link>
+              <router-link to="/contacto" class="btn primary glow" v-glow v-reveal="{ from: 'up', delay: 220 }">Hablar con un técnico</router-link>
             </div>
           </div>
         </div>
       </div>
 
       <div class="section-tight">
-        <div class="card glow" v-glow>
-          <h2 class="h2">Servicios para el sector público</h2>
-          <p class="p">
+        <div class="card glow" v-glow v-reveal="{ from: 'up', delay: 80 }">
+          <h2 class="h2" v-reveal="{ from: 'up', delay: 110 }">Servicios para el sector público</h2>
+          <p class="p" v-reveal="{ from: 'up', delay: 150 }">
             Acompañamos a las administraciones en la correcta gestión energética, combinando criterios técnicos, económicos y de cumplimiento normativo.
           </p>
           <div class="grid grid-2" style="margin-top:12px;">
@@ -74,9 +74,9 @@
             />
           </div>
 
-          <div class="cta-row" style="margin-top:14px;">
-            <router-link to="/sector-publico" class="btn glow" v-glow>Ver detalle</router-link>
-            <router-link to="/contacto" class="btn primary glow" v-glow>Solicitar propuesta</router-link>
+          <div class="cta-row" style="margin-top:14px;" v-reveal="{ from: 'up', delay: 210 }">
+            <router-link to="/sector-publico" class="btn glow" v-glow v-reveal="{ from: 'left', delay: 240 }">Ver detalle</router-link>
+            <router-link to="/contacto" class="btn primary glow" v-glow v-reveal="{ from: 'right', delay: 270 }">Solicitar propuesta</router-link>
           </div>
         </div>
       </div>

@@ -1,11 +1,18 @@
 <!-- componente de botón redondo para subir al inicio de la página. -->
 <template>
-  <button class="scroll-top glow" v-glow type="button" aria-label="Volver arriba" @click="scrollToTop">
+  <button class="scroll-top glow" :class="{ 'cta-closed': isCTAClosed }" v-glow type="button" aria-label="Volver arriba" @click="scrollToTop">
     <span class="arrow" aria-hidden="true">&uarr;</span>
   </button>
 </template>
 
 <script setup>
+const props = defineProps({
+  isCTAClosed: {
+    type: Boolean,
+    default: false
+  }
+});
+
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -15,7 +22,7 @@ function scrollToTop() {
 .scroll-top {
   position: fixed;
   right: 30px;
-  bottom: 32px;
+  bottom: 27px;
   z-index: 70;
   width: 45px;
   height: 45px;
@@ -42,6 +49,11 @@ function scrollToTop() {
 
 .scroll-top:hover {
   background: rgba(242, 197, 61, .62);
+}
+
+.scroll-top.cta-closed {
+  right: 10px;
+  bottom: 10px;
 }
 
 .arrow {

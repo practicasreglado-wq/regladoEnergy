@@ -3,31 +3,31 @@
   <section class="section">
     <div class="container">
       <div class="grid grid-2">
-        <div class="card soft glow" v-glow>
-          <div class="badge">Administradores de fincas</div>
-          <h1 class="h1">Centralizamos la gestión energética, optimizamos contratos y damos soporte continuo.</h1>
-          <p class="p">
+        <div class="card soft glow" v-glow v-reveal="{ from: 'left', delay: 50 }">
+          <div class="badge" v-reveal="{ from: 'up', delay: 80 }">Administradores de fincas</div>
+          <h1 class="h1" v-reveal="{ from: 'up', delay: 120 }">Centralizamos la gestión energética, optimizamos contratos y damos soporte continuo.</h1>
+          <p class="p" v-reveal="{ from: 'right', delay: 170 }">
             Optimizamos carteras de inmuebles y comunidades con un enfoque de control: inventario, priorización por impacto y verificación de cambios.
           </p>
-          <div class="cta-row">
-            <router-link to="/contacto" class="btn primary glow" v-glow>Solicitar análisis</router-link>
-            <router-link to="/clientes" class="btn glow" v-glow>Ver perfiles</router-link>
+          <div class="cta-row" v-reveal="{ from: 'up', delay: 220 }">
+            <router-link to="/contacto" class="btn primary glow" v-glow v-reveal="{ from: 'left', delay: 250 }">Solicitar análisis</router-link>
+            <router-link to="/clientes" class="btn glow" v-glow v-reveal="{ from: 'right', delay: 280 }">Ver perfiles</router-link>
           </div>
         </div>
 
-        <div class="card glow" v-glow>
-          <h2 class="h2">Qué hacemos</h2>
-          <ul class="bullets">
+        <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 70 }">
+          <h2 class="h2" v-reveal="{ from: 'up', delay: 100 }">Qué hacemos</h2>
+          <ul class="bullets" v-reveal="{ from: 'up', delay: 140 }">
             <li>Inventario y revisión de condiciones por suministro.</li>
             <li>Priorización de acciones por impacto económico (quick wins).</li>
             <li>Gestión de cambios: potencias, titularidades, condiciones.</li>
             <li>Soporte continuo en incidencias y reclamaciones.</li>
           </ul>
 
-          <div class="hr"></div>
+          <div class="hr" v-reveal="{ from: 'up', delay: 170 }"></div>
 
-          <h2 class="h2">Qué aportamos a la comunidad</h2>
-          <ul class="bullets">
+          <h2 class="h2" v-reveal="{ from: 'up', delay: 200 }">Qué aportamos a la comunidad</h2>
+          <ul class="bullets" v-reveal="{ from: 'up', delay: 240 }">
             <li>Informes claros para juntas y propietarios.</li>
             <li>Control de facturación y verificación de cambios.</li>
             <li>Revisiones periódicas para sostener el ahorro.</li>

@@ -2,10 +2,10 @@
 <template>
   <section class="section">
     <div class="container">
-      <div class="card glow" v-glow>
-        <h1 class="h1">Página no encontrada</h1>
-        <p class="p">La ruta solicitada no existe. Vuelve al inicio o usa el menú.</p>
-        <router-link to="/" class="btn primary glow" v-glow>Ir a Inicio</router-link>
+      <div class="card glow" v-glow v-reveal="{ from: 'up', delay: 60 }">
+        <h1 class="h1" v-reveal="{ from: 'up', delay: 100 }">Página no encontrada</h1>
+        <p class="p" v-reveal="{ from: 'up', delay: 140 }">La ruta solicitada no existe. Vuelve al inicio o usa el menú.</p>
+        <router-link to="/" class="btn primary glow" v-glow v-reveal="{ from: 'up', delay: 180 }">Ir a Inicio</router-link>
       </div>
     </div>
   </section>

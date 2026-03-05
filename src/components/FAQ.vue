@@ -1,9 +1,9 @@
 <!-- componente de Preguntas Frecuentes en pag Recursos -->
 <template>
-  <div class="card glow" v-glow v-reveal>
-    <div class="h2" style="margin-bottom:10px;">Preguntas frecuentes</div>
+  <div class="card glow" v-glow v-reveal="{ from: 'up', delay: 70 }">
+    <div class="h2" style="margin-bottom:10px;" v-reveal="{ from: 'up', delay: 110 }">Preguntas frecuentes</div>
     <div class="items">
-      <details v-for="(it, i) in items" :key="i" class="item">
+      <details v-for="(it, i) in items" :key="i" class="item" v-reveal="{ from: 'up', delay: 140 + i * 40 }">
         <summary>{{ it.q }}</summary>
         <div class="ans">{{ it.a }}</div>
       </details>

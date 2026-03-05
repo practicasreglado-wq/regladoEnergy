@@ -2,44 +2,44 @@
 <template>
   <section class="section">
     <div class="container">
-      <div class="card soft glow" v-glow>
-        <div class="badge">Sobre nosotros</div>
-        <h1 class="h1">Consultoría energética independiente para particulares, empresas, administraciones públicas y gestores de múltiples suministros.</h1>
-        <p class="p">
+      <div class="card soft glow" v-glow v-reveal="{ from: 'up', delay: 50 }">
+        <div class="badge" v-reveal="{ from: 'left', delay: 80 }">Sobre nosotros</div>
+        <h1 class="h1" v-reveal="{ from: 'up', delay: 120 }">Consultoría energética independiente para particulares, empresas, administraciones públicas y gestores de múltiples suministros.</h1>
+        <p class="p" v-reveal="{ from: 'right', delay: 170 }">
           Aportamos criterio técnico, transparencia y control en un mercado energético complejo y cambiante. Frente a modelos basados en la venta de tarifas,
           apostamos por un enfoque profesional, analítico y orientado al largo plazo.
         </p>
-        <p class="p">
+        <p class="p" v-reveal="{ from: 'up', delay: 210 }">
           Analizamos, optimizamos y gestionamos los suministros con criterios técnicos y económicos, actuando de manera independiente frente a las comercializadoras.
           Acompañamos a nuestros clientes durante todo el ciclo de vida del suministro, desde el análisis inicial hasta el seguimiento periódico.
         </p>
-        <div class="cta-row">
-          <router-link to="/contacto" class="btn primary glow" v-glow>Hablar con nosotros</router-link>
-          <router-link to="/servicios" class="btn glow" v-glow>Ver servicios</router-link>
+        <div class="cta-row" v-reveal="{ from: 'up', delay: 250 }">
+          <router-link to="/contacto" class="btn primary glow" v-glow v-reveal="{ from: 'left', delay: 280 }">Hablar con nosotros</router-link>
+          <router-link to="/servicios" class="btn glow" v-glow v-reveal="{ from: 'right', delay: 310 }">Ver servicios</router-link>
         </div>
       </div>
 
       <div class="section-tight">
         <div class="grid grid-2">
-          <div class="card glow" v-glow>
-            <h2 class="h2">Vinculación con Reglado Consultores & Abogados</h2>
-            <p class="p">
+          <div class="card glow" v-glow v-reveal="{ from: 'left', delay: 70 }">
+            <h2 class="h2" v-reveal="{ from: 'up', delay: 110 }">Vinculación con Reglado Consultores & Abogados</h2>
+            <p class="p" v-reveal="{ from: 'up', delay: 150 }">
               Reglado Energy forma parte del ecosistema profesional de Reglado Consultores & Abogados, aplicando el mismo rigor técnico, metodología de trabajo
               y compromiso con el cliente. Esta vinculación permite abordar la gestión energética con una visión integral, especialmente en entornos regulados,
               contratos complejos y sector público.
             </p>
           </div>
 
-          <div class="card glow" v-glow>
-            <h2 class="h2">Misión</h2>
-            <p class="p">
+          <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 90 }">
+            <h2 class="h2" v-reveal="{ from: 'up', delay: 120 }">Misión</h2>
+            <p class="p" v-reveal="{ from: 'up', delay: 150 }">
               Ayudar a particulares, empresas y administraciones públicas a optimizar sus contratos de luz y gas para que paguen lo justo y mantengan el control del suministro.
             </p>
 
-            <div class="hr"></div>
+            <div class="hr" v-reveal="{ from: 'up', delay: 180 }"></div>
 
-            <h2 class="h2">Visión</h2>
-            <p class="p">
+            <h2 class="h2" v-reveal="{ from: 'up', delay: 210 }">Visión</h2>
+            <p class="p" v-reveal="{ from: 'up', delay: 240 }">
               Consolidarnos como referente en consultoría y gestión energética independiente en España, reconocido por nuestro rigor técnico, metodología y especialización en contratos energéticos complejos.
             </p>
           </div>
@@ -47,8 +47,8 @@
       </div>
 
       <div class="section-tight">
-        <div class="card soft glow" v-glow>
-          <h2 class="h2">Valores</h2>
+        <div class="card soft glow" v-glow v-reveal="{ from: 'up', delay: 80 }">
+          <h2 class="h2" v-reveal="{ from: 'up', delay: 120 }">Valores</h2>
           <div class="grid grid-3" style="margin-top:12px;">
             <FeatureCard icon="src/assets/Independency.svg" title="Independencia" text="Defendemos los intereses del cliente frente al mercado." />
             <FeatureCard icon="src/assets/License.svg" title="Rigor técnico y económico" text="Decisiones basadas en datos y criterios objetivos." />

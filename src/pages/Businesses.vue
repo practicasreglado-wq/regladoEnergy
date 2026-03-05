@@ -3,27 +3,27 @@
   <section class="section">
     <div class="container">
       <div class="grid grid-2">
-        <div class="card soft glow" v-glow>
-          <div class="badge">Empresas y PYMES</div>
-          <h1 class="h1">Reducción de costes, mejora contractual y control continuo del suministro.</h1>
-          <p class="p">
+        <div class="card soft glow" v-glow v-reveal="{ from: 'left', delay: 50 }">
+          <div class="badge" v-reveal="{ from: 'up', delay: 80 }">Empresas y PYMES</div>
+          <h1 class="h1" v-reveal="{ from: 'up', delay: 120 }">Reducción de costes, mejora contractual y control continuo del suministro.</h1>
+          <p class="p" v-reveal="{ from: 'right', delay: 170 }">
             Analizamos contratos, facturas y consumo para detectar ineficiencias y riesgos que suelen pasar desapercibidos.
           </p>
 
-          <h2 class="h2" style="margin-top:14px;">Enfoque</h2>
-          <p class="p">
+          <h2 class="h2" style="margin-top:14px;" v-reveal="{ from: 'up', delay: 210 }">Enfoque</h2>
+          <p class="p" v-reveal="{ from: 'up', delay: 250 }">
             No nos limitamos a recomendar un cambio de tarifa o comercializadora. Entendemos cómo consumes, cómo estás contratado y qué impacto real
             tiene cada decisión en el corto, medio y largo plazo.
           </p>
 
-          <div class="cta-row">
-            <router-link to="/contacto" class="btn primary glow" v-glow>Pedir diagnóstico</router-link>
-            <router-link to="/servicios" class="btn glow" v-glow>Ver servicios</router-link>
+          <div class="cta-row" v-reveal="{ from: 'up', delay: 290 }">
+            <router-link to="/contacto" class="btn primary glow" v-glow v-reveal="{ from: 'left', delay: 320 }">Pedir diagnóstico</router-link>
+            <router-link to="/servicios" class="btn glow" v-glow v-reveal="{ from: 'right', delay: 350 }">Ver servicios</router-link>
           </div>
         </div>
 
-        <div class="card glow" v-glow>
-          <h2 class="h2">Qué hacemos</h2>
+        <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 70 }">
+          <h2 class="h2" v-reveal="{ from: 'up', delay: 110 }">Qué hacemos</h2>
           <div class="grid grid-2" style="margin-top:12px;">
             <FeatureCard icon="🧾" title="Auditoría de facturas"
               text="Detección de sobrecostes, errores y riesgos contractuales."
@@ -39,10 +39,10 @@
             />
           </div>
 
-          <div class="hr"></div>
+          <div class="hr" v-reveal="{ from: 'up', delay: 170 }"></div>
 
-          <h2 class="h2">Metodología</h2>
-          <ol class="bullets">
+          <h2 class="h2" v-reveal="{ from: 'up', delay: 200 }">Metodología</h2>
+          <ol class="bullets" v-reveal="{ from: 'up', delay: 230 }">
             <li>Facturas, contrato, datos de consumo y objetivos.</li>
             <li>Identificación de costes, riesgos, penalizaciones y oportunidades de optimización.</li>
             <li>Medidas priorizadas con impacto económico estimado.</li>

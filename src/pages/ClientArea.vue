@@ -3,7 +3,7 @@
   <section class="section">
     <div class="container">
       <div class="grid grid-2">
-        <div class="card soft glow" v-glow>
+        <div class="card soft glow" v-glow v-reveal="{ from: 'left', delay: 50 }">
           <div class="badge" v-reveal>Área de clientes</div>
           <h1 class="h1" v-reveal="{delay:80}">Zona privada (demo) para facturas, consumo y solicitudes.</h1>
           <p class="p" v-reveal="{delay:140}">
@@ -13,43 +13,43 @@
           <div class="box" v-reveal="{delay:190}">
             <div class="t">Roadmap típico</div>
             <ul class="bullets">
-              <li>Backend + base de datos</li>
-              <li>Carga segura de PDFs</li>
-              <li>Panel de consumo</li>
-              <li>Notificaciones + CRM</li>
+              <li v-reveal="{ from: 'left', delay: 220 }">Backend + base de datos</li>
+              <li v-reveal="{ from: 'left', delay: 250 }">Carga segura de PDFs</li>
+              <li v-reveal="{ from: 'left', delay: 280 }">Panel de consumo</li>
+              <li v-reveal="{ from: 'left', delay: 310 }">Notificaciones + CRM</li>
             </ul>
           </div>
         </div>
 
-        <div class="card glow" v-glow v-reveal>
-          <div class="h2">Acceso (simulación)</div>
-          <form class="form" @submit.prevent="login">
-            <div class="field">
+        <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 70 }">
+          <div class="h2" v-reveal="{ from: 'up', delay: 100 }">Acceso (simulación)</div>
+          <form class="form" @submit.prevent="login" v-reveal="{ from: 'up', delay: 130 }">
+            <div class="field" v-reveal="{ from: 'up', delay: 160 }">
               <label>Email *</label>
               <input v-model="email" required type="email" placeholder="cliente@empresa.com" />
             </div>
-            <div class="field">
+            <div class="field" v-reveal="{ from: 'up', delay: 190 }">
               <label>Contraseña *</label>
               <input v-model="pass" required type="password" placeholder="••••••••" />
             </div>
-            <button class="btn primary glow" v-glow type="submit">Entrar (demo)</button>
+            <button class="btn primary glow" v-glow v-reveal="{ from: 'up', delay: 220 }" type="submit">Entrar (demo)</button>
           </form>
 
           <div v-if="ok" class="sent" v-reveal>
             <strong>Acceso correcto (demo).</strong> Pantalla solo de maquetación.
           </div>
 
-          <div class="hr"></div>
+          <div class="hr" v-reveal="{ from: 'up', delay: 250 }"></div>
 
-          <div class="h2" style="margin-bottom:10px;">Qué incluirá</div>
+          <div class="h2" style="margin-bottom:10px;" v-reveal="{ from: 'up', delay: 280 }">Qué incluirá</div>
           <ul class="bullets">
-            <li>Histórico de facturas y documentos.</li>
-            <li>Panel de consumo por periodos.</li>
-            <li>Solicitudes y seguimiento.</li>
-            <li>Objetivos y alertas.</li>
+            <li v-reveal="{ from: 'right', delay: 310 }">Histórico de facturas y documentos.</li>
+            <li v-reveal="{ from: 'right', delay: 340 }">Panel de consumo por periodos.</li>
+            <li v-reveal="{ from: 'right', delay: 370 }">Solicitudes y seguimiento.</li>
+            <li v-reveal="{ from: 'right', delay: 400 }">Objetivos y alertas.</li>
           </ul>
 
-          <router-link to="/contacto" class="btn glow" v-glow style="margin-top:12px;">Quiero activarlo</router-link>
+          <router-link to="/contacto" class="btn glow" v-glow v-reveal="{ from: 'up', delay: 430 }" style="margin-top:12px;">Quiero activarlo</router-link>
         </div>
       </div>
     </div>

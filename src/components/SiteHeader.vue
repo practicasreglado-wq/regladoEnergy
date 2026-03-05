@@ -11,6 +11,7 @@
       </router-link>
 
       <nav class="nav">
+        <router-link to="/" class="nav-link">Inicio</router-link>
         <router-link to="/servicios" class="nav-link">Servicios</router-link>
         <router-link to="/clientes" class="nav-link">Clientes</router-link>
         <router-link to="/recursos" class="nav-link">Recursos</router-link>

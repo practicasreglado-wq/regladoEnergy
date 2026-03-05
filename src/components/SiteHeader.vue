@@ -16,7 +16,7 @@
         <div class="nav-dropdown">
           <router-link to="/clientes" class="nav-link nav-drop-trigger" aria-haspopup="menu">
             Clientes
-            <span class="caret" aria-hidden="true">▾</span>
+            <span class="caret" aria-hidden="true"></span>
           </router-link>
           <div class="dropdown-menu" role="menu" aria-label="Submenú clientes">
             <router-link to="/particulares" class="dropdown-link" role="menuitem">Particulares</router-link>
@@ -108,15 +108,20 @@ function closeLogin() {
 </script>
 
 <style scoped>
+/* Header principal: fijo arriba con efecto de desenfoque y borde inferior */
 .header{ position: sticky; top:0; z-index: 50; backdrop-filter: blur(12px); background: rgba(11,13,16,.65); border-bottom: 1px solid rgba(255,255,255,.08); }
+/* Contenedor interno: distribuye logo, navegación y hamburguesa */
 .header-inner{ display:flex; align-items:center; justify-content:space-between; padding: 14px 0; gap: 14px; }
+/* Bloque de marca */
 .brand{ display:flex; align-items:center; gap: 12px; }
 .logo{ width: 44px; height: 44px; object-fit: contain; }
 .brand-name{ font-weight: 800; letter-spacing: .8px; }
 .brand-sub{ font-size: 12px; color: rgba(233,238,246,.70); }
+/* Menú desktop */
 .nav{ display:flex; align-items:center; gap: 14px; }
 .nav-link{ color: rgba(233,238,246,.82); font-size: 14px; padding: 10px 10px; border-radius: 12px; border: 1px solid transparent; }
 .nav-link:hover{ border-color: rgba(242,197,61,.25); background: rgba(255,255,255,.03); }
+/* Dropdown desktop de "Clientes" */
 .nav-dropdown{ position: relative; }
 .nav-drop-trigger{
   display: inline-flex;
@@ -130,6 +135,7 @@ function closeLogin() {
   color: rgba(242,197,61,.85);
   transition: transform .18s ease;
 }
+/* Caja del submenú desktop */
 .dropdown-menu{
   position: absolute;
   top: 100%;
@@ -147,6 +153,7 @@ function closeLogin() {
   transition: opacity .16s ease, transform .16s ease;
   z-index: 60;
 }
+/* Enlaces dentro del submenú desktop */
 .dropdown-link{
   display: block;
   padding: 10px 12px;
@@ -165,6 +172,7 @@ function closeLogin() {
   background: rgba(242,197,61,.12);
   color: rgba(255,255,255,.98);
 }
+/* Mostrar submenú al pasar el ratón o al tener foco */
 .nav-dropdown:hover .dropdown-menu,
 .nav-dropdown:focus-within .dropdown-menu{
   opacity: 1;
@@ -175,17 +183,22 @@ function closeLogin() {
 .nav-dropdown:focus-within .caret{
   transform: rotate(180deg);
 }
-.burger{ display:none; background: transparent; border:none; cursor:pointer; width: 44px; height: 44px; border-radius: 14px; border: 1px solid rgba(255,255,255,.10); }
+/* Botón hamburguesa (solo móvil) */
+.burger{ display:none; background: transparent; border:none; cursor:pointer; width: 44px; height: 44px; border-radius: 14px; border: 1px solid rgba(242,197,61,.84); }
 .burger span{ display:block; height:2px; margin:6px 10px; background: rgba(233,238,246,.85); }
+/* Contenedor desplegable del menú móvil */
 .mobile{ border-top: 1px solid rgba(255,255,255,.08); background: rgba(15, 16, 11, 0.85); }
 .mobile-inner{ padding: 14px 0 18px; display:flex; flex-direction:column; gap: 10px; }
+/* Grupo "Clientes" en móvil */
 .m-group{ display:flex; flex-direction:column; gap: 8px; }
 .m-caret{ display:inline-block; transition: transform .18s ease; }
 .m-caret.open{ transform: rotate(180deg); }
+/* Enlace padre de "Clientes" con espacio para la flecha */
 .m-link-caret{
   position: relative;
   padding-right: 40px;
 }
+/* Flecha del desplegable en móvil */
 .m-caret-inline{
   position: absolute;
   right: 12px;
@@ -197,50 +210,48 @@ function closeLogin() {
 .m-caret-inline.open{
   transform: translateY(-50%) rotate(180deg);
 }
+/* Contenedor de subenlaces del menú móvil */
 .m-submenu{
   display:flex;
   flex-direction:column;
   gap: 8px;
   padding-left: 12px;
 }
+/* Estilo base de subenlaces móviles */
 .m-sublink{
   padding: 10px 12px;
   border-radius: 12px;
-  border: 1px solid rgba(242,197,61,.20);
-  border-bottom: 2px solid transparent;
-  background:
-    radial-gradient(220px 90px at 8% 0%, rgba(242,197,61,.18), transparent 70%),
-    rgba(242,197,61,.05);
+  border: 1px solid rgba(242,197,61,.62);
+  border-bottom: 1px solid rgba(242,197,61,.62);
+  background: transparent;
   color: rgba(233,238,246,.9);
   font-size: 14px;
 }
+/* Estado activo en subenlaces: marca inferior dorada */
 .m-sublink.router-link-active{
   color: rgba(233,238,246,.9);
-  border-color: rgba(242,197,61,.20);
-  border-bottom-color: rgba(242,197,61,.82);
-  background:
-    radial-gradient(220px 90px at 8% 0%, rgba(242,197,61,.18), transparent 70%),
-    rgba(242,197,61,.05);
+  border-color: rgba(242,197,61,.62);
+  border-bottom-color: rgba(242,197,61,.62);
+  background: rgba(242,197,61,.16);
 }
+/* Estilo base de enlaces principales en móvil */
 .m-link{
   padding: 12px 12px;
   border-radius: 14px;
-  border: 1px solid rgba(242,197,61,.20);
-  border-bottom: 2px solid transparent;
-  background:
-    radial-gradient(220px 90px at 8% 0%, rgba(242,197,61,.18), transparent 70%),
-    rgba(242,197,61,.05);
+  border: 1px solid rgba(242,197,61,.84);
+  border-bottom: 1px solid rgba(242,197,61,.84);
+  background: transparent;
 }
 .m-link:hover{
-  border-color: rgba(242,197,61,.30);
+  border-color: rgba(242,197,61,.84);
 }
+/* Estado activo en enlaces principales: borde inferior dorado */
 .m-link.router-link-active{
   color: rgba(233,238,246,.9);
-  border-color: rgba(242,197,61,.20);
+  border-color: rgba(242,197,61,.84);
   border-bottom-color: rgba(242,197,61,.84);
-  background:
-    radial-gradient(220px 90px at 8% 0%, rgba(242,197,61,.18), transparent 70%),
-    rgba(242,197,61,.05);
+  background: rgba(242,197,61,.16);
 }
+/* Responsive: ocultar menú desktop y mostrar botón hamburguesa */
 @media (max-width: 980px){ .nav{ display:none; } .burger{ display:block; } }
 </style>

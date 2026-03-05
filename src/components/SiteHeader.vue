@@ -27,7 +27,7 @@
         </div>
         <router-link to="/recursos" class="nav-link">Recursos</router-link>
         <router-link to="/sobre-nosotros" class="nav-link">Sobre nosotros</router-link>
-        <router-link to="/contacto" class="btn primary glow" v-glow>Análisis gratuito</router-link>
+        <button @click="showLoginModal = true" class="btn primary glow" v-glow>Inicio de sesión</button>
       </nav>
 
       <button class="burger" @click="toggleMobileMenu" aria-label="Abrir menú">
@@ -38,51 +38,29 @@
     <!-- Menú mobile -->
     <div v-if="open" class="mobile">
       <div class="container mobile-inner">
-        <router-link @click="closeMobileMenu" to="/servicios" class="m-link">Servicios</router-link>
-
-        <div class="m-group">
-          <router-link @click="closeMobileMenu" to="/clientes" class="m-link m-link-caret">
-            Clientes
-            <span
-              class="m-caret m-caret-inline"
-              :class="{ open: mobileClientsOpen }"
-              @click.stop.prevent="mobileClientsOpen = !mobileClientsOpen"
-              aria-hidden="true"
-            >▾</span>
-          </router-link>
-
-          <div v-if="mobileClientsOpen" class="m-submenu">
-            <router-link @click="closeMobileMenu" to="/particulares" class="m-sublink">Particulares</router-link>
-            <router-link @click="closeMobileMenu" to="/empresas" class="m-sublink">Empresas y Pymes</router-link>
-            <router-link @click="closeMobileMenu" to="/administradores-fincas" class="m-sublink">Comunidades y Fincas</router-link>
-            <router-link @click="closeMobileMenu" to="/sector-publico" class="m-sublink">Organismos públicos</router-link>
-          </div>
-        </div>
-
-        <router-link @click="closeMobileMenu" to="/recursos" class="m-link">Recursos</router-link>
-        <router-link @click="closeMobileMenu" to="/sobre-nosotros" class="m-link">Sobre nosotros</router-link>
-        <router-link @click="closeMobileMenu" to="/area-clientes" class="m-link">Área de clientes</router-link>
-        <router-link @click="closeMobileMenu" to="/contacto" class="btn primary glow" v-glow style="width:100%">Análisis gratuito</router-link>
+        <router-link @click="open=false" to="/servicios" class="m-link">Servicios</router-link>
+        <router-link @click="open=false" to="/clientes" class="m-link">Clientes</router-link>
+        <router-link @click="open=false" to="/particulares" class="m-link">Particulares</router-link>
+        <router-link @click="open=false" to="/empresas" class="m-link">Empresas</router-link>
+        <router-link @click="open=false" to="/sector-publico" class="m-link">Sector público</router-link>
+        <router-link @click="open=false" to="/administradores-fincas" class="m-link">Administradores de fincas</router-link>
+        <router-link @click="open=false" to="/recursos" class="m-link">Recursos</router-link>
+        <router-link @click="open=false" to="/sobre-nosotros" class="m-link">Sobre nosotros</router-link>
+        <router-link @click="open=false" to="/area-clientes" class="m-link">Área de clientes</router-link>
+        <button @click="showLoginModal = true" class="btn primary glow" v-glow>Inicio de sesión</button>
       </div>
     </div>
+
+    <LoginModal v-model="showLoginModal" />
   </header>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import LoginModal from "./LoginModal.vue";
 import logo from "../assets/reglado-energy-logo.svg";
 const open = ref(false);
-const mobileClientsOpen = ref(false);
-
-function closeMobileMenu() {
-  open.value = false;
-  mobileClientsOpen.value = false;
-}
-
-function toggleMobileMenu() {
-  open.value = !open.value;
-  if (!open.value) mobileClientsOpen.value = false;
-}
+const showLoginModal = ref(false);
 </script>
 
 <style scoped>
@@ -95,64 +73,7 @@ function toggleMobileMenu() {
 .nav{ display:flex; align-items:center; gap: 14px; }
 .nav-link{ color: rgba(233,238,246,.82); font-size: 14px; padding: 10px 10px; border-radius: 12px; border: 1px solid transparent; }
 .nav-link:hover{ border-color: rgba(242,197,61,.25); background: rgba(255,255,255,.03); }
-.nav-dropdown{ position: relative; }
-.nav-drop-trigger{
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  cursor: pointer;
-  font-family: inherit;
-}
-.caret{
-  font-size: 12px;
-  color: rgba(242,197,61,.85);
-  transition: transform .18s ease;
-}
-.dropdown-menu{
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 235px;
-  margin-top: 0;
-  padding: 8px;
-  border-radius: 14px;
-  border: 1px solid rgba(242,197,61,.24);
-  background: #0f1318;
-  box-shadow: 0 20px 46px rgba(0,0,0,.42);
-  opacity: 0;
-  transform: translateY(8px) scale(.985);
-  pointer-events: none;
-  transition: opacity .16s ease, transform .16s ease;
-  z-index: 60;
-}
-.dropdown-link{
-  display: block;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  color: rgba(233,238,246,.86);
-  font-size: 14px;
-}
-.dropdown-link:hover{
-  border-color: rgba(242,197,61,.25);
-  background: rgba(255,255,255,.05);
-  color: rgba(255,255,255,.96);
-}
-.dropdown-link.router-link-active{
-  border-color: rgba(242,197,61,.38);
-  background: rgba(242,197,61,.12);
-  color: rgba(255,255,255,.98);
-}
-.nav-dropdown:hover .dropdown-menu,
-.nav-dropdown:focus-within .dropdown-menu{
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-}
-.nav-dropdown:hover .caret,
-.nav-dropdown:focus-within .caret{
-  transform: rotate(180deg);
-}
+.nav button{ border: none; cursor: pointer; font-size: 14px; }
 .burger{ display:none; background: transparent; border:none; cursor:pointer; width: 44px; height: 44px; border-radius: 14px; border: 1px solid rgba(255,255,255,.10); }
 .burger span{ display:block; height:2px; margin:6px 10px; background: rgba(233,238,246,.85); }
 .mobile{ border-top: 1px solid rgba(255,255,255,.08); background: rgba(15, 16, 11, 0.85); }

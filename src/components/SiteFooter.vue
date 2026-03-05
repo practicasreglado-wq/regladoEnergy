@@ -37,7 +37,13 @@ const year = new Date().getFullYear();
 </script>
 
 <style scoped>
-.footer{ border-top: 1px solid rgba(255,255,255,.08); background: rgba(242,197,61,.12); padding: 40px 0 140px; }
+.footer{
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: #2b2716;
+  padding: 40px 0 140px;
+}
 .footer-inner{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 18px; align-items: start; }
 .title{ font-weight: 800; margin-bottom: 10px; letter-spacing: .6px; display: inline-block; padding: 8px 12px; border: 1px solid rgba(242,197,61,.6); border-radius: 6px; background: rgba(242,197,61,.08); }
 .links{ display:flex; flex-direction:column; gap: 10px; }

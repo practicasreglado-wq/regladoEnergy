@@ -28,8 +28,8 @@ summary::after{
   width: 24px; height: 24px;
   display:grid; place-items:center;
   border-radius: 999px;
-  border: 1px solid rgba(242,197,61,.22);
-  background: rgba(242,197,61,.10);
+  border: 0px solid rgba(242,197,61,.22);
+  background: none;
   color: rgba(242,197,61,.95);
   transform: rotate(0deg);
   transition: transform .16s ease;

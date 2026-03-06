@@ -136,4 +136,5 @@ onMounted(() => {
 .bullets{ margin:0; padding-left:18px; color: var(--muted); line-height:1.9; }
 .hr{ height:1px; background: linear-gradient(90deg, transparent, var(--line), transparent); margin: 18px 0; }
 .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px; }
+
 </style>

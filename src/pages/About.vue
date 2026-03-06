@@ -22,7 +22,8 @@
       <div class="section-tight">
         <div class="grid grid-2">
           <div class="card glow" v-glow v-reveal="{ from: 'left', delay: 70 }">
-            <h2 class="h2" v-reveal="{ from: 'up', delay: 110 }">Vinculación con Reglado Consultores & Abogados</h2>
+            <h2 class="h2new" v-reveal="{ from: 'up', delay: 110 }">Vinculación con Reglado Consultores & Abogados</h2>
+            <br>
             <p class="p" v-reveal="{ from: 'up', delay: 150 }">
               Reglado Energy forma parte del ecosistema profesional de Reglado Consultores & Abogados, aplicando el mismo rigor técnico, metodología de trabajo
               y compromiso con el cliente. Esta vinculación permite abordar la gestión energética con una visión integral, especialmente en entornos regulados,
@@ -31,14 +32,14 @@
           </div>
 
           <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 90 }">
-            <h2 class="h2" v-reveal="{ from: 'up', delay: 120 }">Misión</h2>
+            <h2 class="h2new" v-reveal="{ from: 'up', delay: 120 }">Misión</h2>
             <p class="p" v-reveal="{ from: 'up', delay: 150 }">
               Ayudar a particulares, empresas y administraciones públicas a optimizar sus contratos de luz y gas para que paguen lo justo y mantengan el control del suministro.
             </p>
 
             <div class="hr" v-reveal="{ from: 'up', delay: 180 }"></div>
 
-            <h2 class="h2" v-reveal="{ from: 'up', delay: 210 }">Visión</h2>
+            <h2 class="h2new" v-reveal="{ from: 'up', delay: 210 }">Visión</h2>
             <p class="p" v-reveal="{ from: 'up', delay: 240 }">
               Consolidarnos como referente en consultoría y gestión energética independiente en España, reconocido por nuestro rigor técnico, metodología y especialización en contratos energéticos complejos.
             </p>
@@ -85,4 +86,5 @@ onMounted(() => {
 }
 .hr{ height:1px; background: linear-gradient(90deg, transparent, var(--line), transparent); margin: 18px 0; }
 .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px; }
+.h2new{  font-size: clamp(1.5rem, 3.2vw, 2rem);}
 </style>

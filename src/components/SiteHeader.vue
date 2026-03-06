@@ -70,7 +70,6 @@
             <router-link @click="closeMobileMenu" to="/sector-publico" class="m-sublink">Organismos públicos</router-link>
           </div>
         </div>
-
         <router-link @click="closeMobileMenu" to="/recursos" class="m-link">Recursos</router-link>
         <router-link @click="closeMobileMenu" to="/sobre-nosotros" class="m-link">Sobre nosotros</router-link>
         <router-link @click="closeMobileMenu" to="/area-clientes" class="m-link">Área de clientes</router-link>

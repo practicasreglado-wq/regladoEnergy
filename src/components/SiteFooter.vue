@@ -1,4 +1,4 @@
-﻿<!-- componente de Footer global en toda la web (App principal) -->
+<!-- componente de Footer global en toda la web (App principal) -->
 <template>
   <footer class="footer">
     <div class="container footer-inner">
@@ -42,8 +42,8 @@
 </template>
 
 <script setup>
-import linkedinIcon from '../assets/social/linkedin.svg';
-import instagramIcon from '../assets/social/instagram.svg';
+import linkedinIcon from '../assets/iconos/linkedin.svg';
+import instagramIcon from '../assets/iconos/instagram.svg';
 
 const year = new Date().getFullYear();
 </script>

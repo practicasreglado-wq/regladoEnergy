@@ -51,12 +51,12 @@
         <div class="card soft glow" v-glow v-reveal="{ from: 'up', delay: 80 }">
           <h2 class="h2" v-reveal="{ from: 'up', delay: 120 }">Valores</h2>
           <div class="grid grid-3" style="margin-top:12px;">
-            <FeatureCard icon="src/assets/Independency.svg" title="Independencia" text="Defendemos los intereses del cliente frente al mercado." />
-            <FeatureCard icon="src/assets/License.svg" title="Rigor técnico y económico" text="Decisiones basadas en datos y criterios objetivos." />
-            <FeatureCard icon="src/assets/Transparency.svg" title="Transparencia y claridad" text="Explicamos cada paso y su impacto económico." />
-            <FeatureCard icon="src/assets/Shake.svg" title="Acompañamiento" text="Soporte y seguimiento continuo durante toda la vida del contrato." />
-            <FeatureCard icon="src/assets/EcoEnergi.svg" title="Eficiencia y sostenibilidad" text="Priorizamos soluciones sostenibles cuando son viables." />
-            <FeatureCard icon="src/assets/Repeat.svg" title="Control" text="Revisión periódica para sostener ahorros y corregir desviaciones." />
+            <FeatureCard icon="src/assets/iconos/Independency.svg" title="Independencia" text="Defendemos los intereses del cliente frente al mercado." />
+            <FeatureCard icon="src/assets/iconos/License.svg" title="Rigor técnico y económico" text="Decisiones basadas en datos y criterios objetivos." />
+            <FeatureCard icon="src/assets/iconos/Transparency.svg" title="Transparencia y claridad" text="Explicamos cada paso y su impacto económico." />
+            <FeatureCard icon="src/assets/iconos/Shake.svg" title="Acompañamiento" text="Soporte y seguimiento continuo durante toda la vida del contrato." />
+            <FeatureCard icon="src/assets/iconos/EcoEnergi.svg" title="Eficiencia y sostenibilidad" text="Priorizamos soluciones sostenibles cuando son viables." />
+            <FeatureCard icon="src/assets/iconos/Repeat.svg" title="Control" text="Revisión periódica para sostener ahorros y corregir desviaciones." />
           </div>
         </div>
       </div>

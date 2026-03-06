@@ -6,15 +6,13 @@
         <div class="title">REGLADO ENERGY</div>
         <p class="small">Optimizamos contratos de luz y gas, reducimos costes y te acompañamos en toda la gestión energética.</p>
         <div class="social-links" aria-label="Redes sociales">
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <span class="social-icon facebook-icon" aria-hidden="true" :style="{ '--icon-url': `url(${facebookIcon})` }"></span>
+          <a href="https://www.linkedin.com/company/reglado-energy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <span class="social-icon" aria-hidden="true" :style="{ '--icon-url': `url(${linkedinIcon})` }"></span>
           </a>
           <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <span class="social-icon" aria-hidden="true" :style="{ '--icon-url': `url(${instagramIcon})` }"></span>
           </a>
-          <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X">
-            <span class="social-icon" aria-hidden="true" :style="{ '--icon-url': `url(${xIcon})` }"></span>
-          </a>
+         
         </div>
       </div>
       <div class="col">
@@ -30,9 +28,9 @@
       <div class="col">
         <div class="title">Contacto</div>
         <div class="small">
+          <br>
           <div><strong>Tel:</strong> +34 XXX XXX XXX</div>
           <div><strong>Email:</strong> contacto@regladoenergy.com</div>
-          <div><strong>LinkedIn:</strong> /company/reglado-energy</div>
         </div>
       </div>
     </div>
@@ -44,8 +42,7 @@
 </template>
 
 <script setup>
-import facebookIcon from '../assets/social/facebook.svg';
-import xIcon from '../assets/social/x.svg';
+import linkedinIcon from '../assets/social/linkedin.svg';
 import instagramIcon from '../assets/social/instagram.svg';
 
 const year = new Date().getFullYear();
@@ -82,8 +79,8 @@ const year = new Date().getFullYear();
   transform: translateY(-2px);
 }
 .social-icon{
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   background-color: #fff;
   -webkit-mask-image: var(--icon-url);
   mask-image: var(--icon-url);
@@ -98,11 +95,7 @@ const year = new Date().getFullYear();
 .social-links a:hover .social-icon{
   background-color: #f2c53d;
 }
-.facebook-icon{
-  width: 21px;
-  height: 21px;
-  transform: translateY(-2px) translateX(2px);
-}
 .bottom{ margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.08); display:flex; justify-content:space-between; gap: 12px; flex-wrap: wrap; }
 @media (max-width: 980px){ .footer-inner{ grid-template-columns: 1fr; } }
+
 </style>

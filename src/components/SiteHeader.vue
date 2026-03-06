@@ -50,6 +50,7 @@
     <LoginModal v-model="showLogin" />
     <div v-if="open" class="mobile">
       <div class="container mobile-inner">
+        <router-link @click="closeMobileMenu" to="/" class="m-link">Inicio</router-link>
         <router-link @click="closeMobileMenu" to="/servicios" class="m-link">Servicios</router-link>
 
         <div class="m-group">
@@ -72,7 +73,6 @@
         </div>
         <router-link @click="closeMobileMenu" to="/recursos" class="m-link">Recursos</router-link>
         <router-link @click="closeMobileMenu" to="/sobre-nosotros" class="m-link">Sobre nosotros</router-link>
-        <router-link @click="closeMobileMenu" to="/area-clientes" class="m-link">Área de clientes</router-link>
         <router-link @click="closeMobileMenu" to="/contacto" class="btn primary glow mobile-action" v-glow>
           Solicitar análisis
         </router-link>

@@ -151,7 +151,7 @@
     </div>
   </section>
 
-  <section class="section-tight">
+  <section class="section">
     <div class="container">
       <div class="card soft glow" v-glow v-reveal="{ from: 'up' }">
         <h2 class="h2" v-reveal="{ from: 'up', delay: 40 }">Quiénes somos</h2>
@@ -163,6 +163,7 @@
           <router-link to="/sobre-nosotros" class="btn primary glow" v-glow>Conocer más</router-link>
         </div>
       </div>
+      <br><br>
     </div>
   </section>
 </template>

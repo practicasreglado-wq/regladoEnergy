@@ -1,10 +1,21 @@
-<!-- componente de Footer global en toda la web (App principal) -->
+﻿<!-- componente de Footer global en toda la web (App principal) -->
 <template>
   <footer class="footer">
     <div class="container footer-inner">
-      <div class="col">
+      <div class="col brand-col">
         <div class="title">REGLADO ENERGY</div>
         <p class="small">Optimizamos contratos de luz y gas, reducimos costes y te acompañamos en toda la gestión energética.</p>
+        <div class="social-links" aria-label="Redes sociales">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <span class="social-icon facebook-icon" aria-hidden="true" :style="{ '--icon-url': `url(${facebookIcon})` }"></span>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <span class="social-icon" aria-hidden="true" :style="{ '--icon-url': `url(${instagramIcon})` }"></span>
+          </a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <span class="social-icon" aria-hidden="true" :style="{ '--icon-url': `url(${xIcon})` }"></span>
+          </a>
+        </div>
       </div>
       <div class="col">
         <div class="title">Navegación</div>
@@ -33,6 +44,10 @@
 </template>
 
 <script setup>
+import facebookIcon from '../assets/social/facebook.svg';
+import xIcon from '../assets/social/x.svg';
+import instagramIcon from '../assets/social/instagram.svg';
+
 const year = new Date().getFullYear();
 </script>
 
@@ -44,11 +59,50 @@ const year = new Date().getFullYear();
   background: #2b2716;
   padding: 40px 0 140px;
 }
-.footer-inner{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 18px; align-items: start; }
+.footer-inner{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 18px; align-items: stretch; }
+.brand-col{ display: flex; flex-direction: column; align-items: flex-start; }
 .title{ font-weight: 800; margin-bottom: 10px; letter-spacing: .6px; display: inline-block; padding: 8px 12px; border: 1px solid rgba(242,197,61,.6); border-radius: 6px; background: rgba(242,197,61,.08); }
 .links{ display:flex; flex-direction:column; gap: 10px; }
 .links a{ color: rgba(233,238,246,.78); }
 .links a:hover{ color: #fff; }
+.social-links{
+  display:flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: auto;
+  padding-top: 28px;
+}
+.social-links a{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s ease;
+}
+.social-links a:hover{
+  transform: translateY(-2px);
+}
+.social-icon{
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  -webkit-mask-image: var(--icon-url);
+  mask-image: var(--icon-url);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transition: background-color .2s ease;
+}
+.social-links a:hover .social-icon{
+  background-color: #f2c53d;
+}
+.facebook-icon{
+  width: 21px;
+  height: 21px;
+  transform: translateY(-2px) translateX(2px);
+}
 .bottom{ margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.08); display:flex; justify-content:space-between; gap: 12px; flex-wrap: wrap; }
 @media (max-width: 980px){ .footer-inner{ grid-template-columns: 1fr; } }
 </style>

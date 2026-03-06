@@ -17,7 +17,7 @@
         </div>
 
         <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 70 }">
-          <h2 class="h2" v-reveal="{ from: 'up', delay: 100 }">Qué hacemos</h2>
+          <h2 class="h2new" v-reveal="{ from: 'up', delay: 100 }">Qué hacemos</h2>
           <ul class="bullets" v-reveal="{ from: 'up', delay: 140 }">
             <li><strong>Análisis técnico de contratos:</strong> potencias, precios, penalizaciones y condiciones contractuales.</li>
             <li><strong>Apoyo en licitación:</strong> comparativas objetivas y criterios de decisión técnico‑económicos.</li>
@@ -27,7 +27,7 @@
 
           <div class="hr" v-reveal="{ from: 'up', delay: 170 }"></div>
 
-          <h2 class="h2" v-reveal="{ from: 'up', delay: 200 }">Qué necesitas para iniciar</h2>
+          <h2 class="h2new" v-reveal="{ from: 'up', delay: 200 }">Qué necesitas para iniciar</h2>
           <ul class="bullets" v-reveal="{ from: 'up', delay: 240 }">
             <li>Pliegos / contrato vigente o documentación del suministro.</li>
             <li>Facturas recientes y datos de consumo (si están disponibles).</li>
@@ -61,4 +61,5 @@ onMounted(() => {
 .bullets{ margin:0; padding-left:18px; color: var(--muted); line-height:1.9; }
 .hr{ height:1px; background: linear-gradient(90deg, transparent, var(--line), transparent); margin: 18px 0; }
 .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px; }
+.h2new{ font-size: clamp(1.5rem, 3.2vw, 2rem); }
 </style>

@@ -9,8 +9,8 @@
           <p class="p" v-reveal="{ from: 'right', delay: 170 }">
             Analizamos contratos, facturas y consumo para detectar ineficiencias y riesgos que suelen pasar desapercibidos.
           </p>
-
-          <h2 class="h2" style="margin-top:14px;" v-reveal="{ from: 'up', delay: 210 }">Enfoque</h2>
+<br>
+          <h2 class="h2new" style="margin-top:14px;" v-reveal="{ from: 'up', delay: 210 }">Enfoque</h2>
           <p class="p" v-reveal="{ from: 'up', delay: 250 }">
             No nos limitamos a recomendar un cambio de tarifa o comercializadora. Entendemos cómo consumes, cómo estás contratado y qué impacto real
             tiene cada decisión en el corto, medio y largo plazo.
@@ -23,7 +23,7 @@
         </div>
 
         <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 70 }">
-          <h2 class="h2" v-reveal="{ from: 'up', delay: 110 }">Qué hacemos</h2>
+          <h2 class="h2new" v-reveal="{ from: 'up', delay: 110 }">Qué hacemos</h2>
           <div class="grid grid-2" style="margin-top:12px;">
             <FeatureCard icon="src/assets/Auditorias.svg" title="Auditoría de facturas"
               text="Detección de sobrecostes, errores y riesgos contractuales."
@@ -41,7 +41,7 @@
 
           <div class="hr" v-reveal="{ from: 'up', delay: 170 }"></div>
 
-          <h2 class="h2" v-reveal="{ from: 'up', delay: 200 }">Metodología</h2>
+          <h2 class="h2new" v-reveal="{ from: 'up', delay: 200 }">Metodología</h2>
           <ol class="bullets" v-reveal="{ from: 'up', delay: 230 }">
             <li>Facturas, contrato, datos de consumo y objetivos.</li>
             <li>Identificación de costes, riesgos, penalizaciones y oportunidades de optimización.</li>
@@ -78,4 +78,5 @@ onMounted(() => {
 .bullets{ margin:0; padding-left:18px; color: var(--muted); line-height:1.9; }
 .hr{ height:1px; background: linear-gradient(90deg, transparent, var(--line), transparent); margin: 18px 0; }
 .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px; }
+.h2new{  font-size: clamp(1.5rem, 3.2vw, 2rem);}
 </style>

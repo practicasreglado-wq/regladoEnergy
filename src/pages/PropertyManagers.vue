@@ -16,17 +16,17 @@
         </div>
 
         <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 70 }">
-          <h2 class="h2" v-reveal="{ from: 'up', delay: 100 }">Qué hacemos</h2>
+          <h2 class="h2new" v-reveal="{ from: 'up', delay: 100 }">Qué hacemos</h2>
           <ul class="bullets" v-reveal="{ from: 'up', delay: 140 }">
             <li>Inventario y revisión de condiciones por suministro.</li>
             <li>Priorización de acciones por impacto económico (quick wins).</li>
             <li>Gestión de cambios: potencias, titularidades, condiciones.</li>
             <li>Soporte continuo en incidencias y reclamaciones.</li>
           </ul>
-
+<br>
           <div class="hr" v-reveal="{ from: 'up', delay: 170 }"></div>
-
-          <h2 class="h2" v-reveal="{ from: 'up', delay: 200 }">Qué aportamos a la comunidad</h2>
+<br>
+          <h2 class="h2new" v-reveal="{ from: 'up', delay: 200 }">Qué aportamos a la comunidad</h2>
           <ul class="bullets" v-reveal="{ from: 'up', delay: 240 }">
             <li>Informes claros para juntas y propietarios.</li>
             <li>Control de facturación y verificación de cambios.</li>
@@ -61,4 +61,5 @@ onMounted(() => {
 .bullets{ margin:0; padding-left:18px; color: var(--muted); line-height:1.9; }
 .hr{ height:1px; background: linear-gradient(90deg, transparent, var(--line), transparent); margin: 18px 0; }
 .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px; }
+.h2new{  font-size: clamp(1.5rem, 3.2vw, 2rem);}
 </style>

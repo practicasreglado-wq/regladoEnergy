@@ -77,7 +77,7 @@
   <section class="section">
     <div class="container">
         <h2 class="h2" v-reveal="{ from: 'up' }">Beneficios clave</h2>
-        <p class="p" v-reveal="{ from: 'up', delay: 70 }">
+        <p class="p2" v-reveal="{ from: 'up', delay: 70 }">
         Buscamos ahorro sostenible y control real del suministro: decisiones explicadas, trazables y mantenidas en el tiempo.
       </p>
 
@@ -113,7 +113,7 @@
   <section class="section-tight">
     <div class="container">
         <h2 class="h2" v-reveal="{ from: 'up' }">Metodología de trabajo</h2>
-        <p class="p" v-reveal="{ from: 'up', delay: 70 }">
+        <p class="p2" v-reveal="{ from: 'up', delay: 70 }">
         Aplicamos una metodología estructurada que garantiza decisiones correctas hoy y revisiones periódicas en el futuro.
       </p>
 
@@ -192,5 +192,6 @@ onMounted(() => {
 .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 16px; }
 .about-cta-center{ display:flex; justify-content:center; margin-top: 14px; }
 .card-cta-center{ display:flex; justify-content:center; margin-top: 14px; }
+.p2{ text-align: center;}
 </style>
 

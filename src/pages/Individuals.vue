@@ -16,7 +16,7 @@
         </div>
 
         <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 70 }">
-          <h2 class="h2" v-reveal="{ from: 'up', delay: 100 }">Qué revisamos</h2>
+          <h2 class="h2new" v-reveal="{ from: 'up', delay: 100 }">Qué revisamos</h2>
           <ul class="bullets" v-reveal="{ from: 'up', delay: 140 }">
             <li><strong>Potencia contratada:</strong> si pagas por capacidad que no necesitas.</li>
             <li><strong>Tarifa y discriminación horaria:</strong> si encaja con tus hábitos.</li>
@@ -26,7 +26,7 @@
 
           <div class="hr" v-reveal="{ from: 'up', delay: 170 }"></div>
 
-          <h2 class="h2" v-reveal="{ from: 'up', delay: 200 }">Qué te llevas</h2>
+          <h2 class="h2new" v-reveal="{ from: 'up', delay: 200 }">Qué te llevas</h2>
           <ul class="bullets" v-reveal="{ from: 'up', delay: 240 }">
             <li>Explicación clara y comprensible de tu factura.</li>
             <li>Propuesta de optimización con ahorro estimado (sin letra pequeña).</li>
@@ -39,8 +39,10 @@
       <div class="section-tight">
         <div class="card soft glow" v-glow v-reveal="{ from: 'up', delay: 80 }">
           <h2 class="h2" v-reveal="{ from: 'up', delay: 120 }">Siguiente paso</h2>
-          <p class="p" v-reveal="{ from: 'up', delay: 160 }">Realizamos un análisis gratuito de facturas. Déjanos tus datos o sube tu factura en PDF y te llamamos con los resultados.</p>
+          <p class="p2" v-reveal="{ from: 'up', delay: 160 }">Realizamos un análisis gratuito de facturas. Déjanos tus datos o sube tu factura en PDF y te llamamos con los resultados.</p>
+          <div class="cta-center">
           <router-link to="/contacto" class="btn primary glow" v-glow v-reveal="{ from: 'up', delay: 200 }">Solicitar análisis gratuito</router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -69,4 +71,10 @@ onMounted(() => {
 .bullets{ margin:0; padding-left:18px; color: var(--muted); line-height:1.9; }
 .hr{ height:1px; background: linear-gradient(90deg, transparent, var(--line), transparent); margin: 18px 0; }
 .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 14px; }
+.h2new{  font-size: clamp(1.5rem, 3.2vw, 2rem);}
+.cta-center {
+  display: flex;
+  justify-content: center;}
+  .p2{ text-align: center;}
+
 </style>

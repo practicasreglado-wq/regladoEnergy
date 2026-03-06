@@ -27,15 +27,18 @@
         </div>
         <router-link to="/recursos" class="nav-link">Recursos</router-link>
         <router-link to="/sobre-nosotros" class="nav-link">Sobre nosotros</router-link>
-        <!-- login button replaces free analysis link -->
-        <button
-          class="btn primary glow"
-          v-glow
-          @click="showLogin = true"
-          aria-label="Iniciar sesión"
-        >
-          Iniciar sesión
-        </button>
+        <div class="nav-actions">
+          <router-link to="/contacto" class="btn primary glow header-action analysis-action" v-glow>Solicitar análisis</router-link>
+          <!-- login button replaces free analysis link -->
+          <button
+            class="btn primary glow header-action"
+            v-glow
+            @click="showLogin = true"
+            aria-label="Iniciar sesión"
+          >
+            Iniciar sesión
+          </button>
+        </div>
       </nav>
 
       <button class="burger" @click="toggleMobileMenu" aria-label="Abrir menú">
@@ -69,10 +72,14 @@
         </div>
         <router-link @click="closeMobileMenu" to="/recursos" class="m-link">Recursos</router-link>
         <router-link @click="closeMobileMenu" to="/sobre-nosotros" class="m-link">Sobre nosotros</router-link>
+        <router-link @click="closeMobileMenu" to="/area-clientes" class="m-link">Área de clientes</router-link>
+        <router-link @click="closeMobileMenu" to="/contacto" class="btn primary glow mobile-action" v-glow>
+          Solicitar análisis
+        </router-link>
         <!-- mobile login button -->
         <button
           @click="(closeMobileMenu(), showLogin = true)"
-          class="btn primary glow" v-glow style="width:100%"
+          class="btn primary glow mobile-action" v-glow
         >
           Iniciar sesión
         </button>
@@ -149,7 +156,17 @@ onBeforeUnmount(() => {
 .brand-name{ font-weight: 800; letter-spacing: .8px; }
 .brand-sub{ font-size: 12px; color: rgba(233,238,246,.70); }
 /* Menú desktop */
-.nav{ display:flex; align-items:center; gap: 14px; }
+.nav{ display:flex; align-items:center; gap: 6px; }
+.nav-actions{ display: flex; align-items: center; gap: 10px; margin-left: 75px; }
+.header-action{
+  width: 124px;
+  height: 36px;
+  padding: 0 12px;
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.btn.primary{font-weight: 800;}
 .nav-link{ color: rgba(233,238,246,.82); font-size: 14px; padding: 10px 10px; border-radius: 12px; border: 1px solid transparent; }
 .nav-link:hover{ border-color: rgba(242,197,61,.25); background: rgba(255,255,255,.03); }
 /* Dropdown desktop de "Clientes" */
@@ -314,5 +331,12 @@ onBeforeUnmount(() => {
   background: rgba(242,197,61,.16);
 }
 /* Responsive: ocultar menú desktop y mostrar botón hamburguesa */
+.mobile-action{
+  width: 100%;
+  min-height: 38px;
+  padding: 8px 12px;
+  font-size: 13px;
+  border-radius: 12px;
+}
 @media (max-width: 980px){ .nav{ display:none; } .burger{ display:block; } }
 </style>

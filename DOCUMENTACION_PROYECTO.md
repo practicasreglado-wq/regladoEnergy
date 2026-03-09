@@ -264,3 +264,17 @@ export default {
 ---
 
 
+
+---
+
+## COMPONENTES FALTANTES DOCUMENTADOS
+
+### src/components/LoginModal.vue
+**Funcion:** Modal de inicio de sesion para usuarios.
+- Se abre desde la cabecera con el boton "Iniciar sesion".
+- Centraliza el formulario de acceso en desktop y mobile.
+
+### src/components/ScrollTopButton.vue
+**Funcion:** Boton flotante para volver al inicio de la pagina.
+- Mejora la navegacion en paginas largas.
+- En App.vue se coordina con CTASticky para evitar solapamientos.

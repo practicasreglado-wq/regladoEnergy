@@ -10,6 +10,7 @@ import Contact from "../pages/Contact.vue";
 import Resources from "../pages/Resources.vue";
 import About from "../pages/About.vue";
 import ClientArea from "../pages/ClientArea.vue";
+import Admin from "../pages/Admin.vue";
 import NotFound from "../pages/NotFound.vue";
 
 const routes = [
@@ -24,6 +25,7 @@ const routes = [
   { path: "/recursos", component: Resources },
   { path: "/sobre-nosotros", component: About },
   { path: "/area-clientes", component: ClientArea },
+  { path: "/admin", component: Admin },
   { path: "/:pathMatch(.*)*", component: NotFound },
 ];
 

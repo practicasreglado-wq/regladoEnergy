@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-// Genera y descarga un ZIP con CSV de solicitudes seleccionadas y sus PDFs asociados (si existen).
+// Genera y descarga un ZIP con datos generales y carpetas por cliente (CSV propio + archivos de factura).
 require_once __DIR__ . '/db.php';
 
 applyCors();
@@ -81,20 +81,23 @@ if ($zip->open($tmpZipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true
     respondJson(500, ['ok' => false, 'message' => 'No se pudo crear el ZIP.']);
 }
 
-$csvHandle = fopen('php://temp', 'r+');
-if ($csvHandle === false) {
+$columns = ['id', 'fecha', 'nombre', 'telefono', 'email', 'mensaje', 'factura_ruta'];
+$generalCsvHandle = fopen('php://temp', 'r+');
+if ($generalCsvHandle === false) {
     $zip->close();
     @unlink($tmpZipPath);
-    respondJson(500, ['ok' => false, 'message' => 'No se pudo generar el CSV.']);
+    respondJson(500, ['ok' => false, 'message' => 'No se pudo generar el CSV general.']);
 }
 
-fputcsv($csvHandle, ['id', 'fecha', 'nombre', 'telefono', 'email', 'mensaje', 'pdf_ruta'], ';');
+fputcsv($generalCsvHandle, $columns, ';');
 
 $uploadsRoot = realpath(__DIR__ . DIRECTORY_SEPARATOR . 'uploads');
-$pdfAdded = 0;
+$clients = [];
+$usedFolderNames = [];
+$totalFilesAdded = 0;
 
 foreach ($rows as $row) {
-    fputcsv($csvHandle, [
+    $csvRow = [
         (string) $row['id'],
         (string) $row['creado_en'],
         (string) $row['nombre'],
@@ -102,7 +105,22 @@ foreach ($rows as $row) {
         (string) $row['email'],
         (string) ($row['mensaje'] ?? ''),
         (string) ($row['pdf_ruta'] ?? ''),
-    ], ';');
+    ];
+    fputcsv($generalCsvHandle, $csvRow, ';');
+
+    $clientKey = buildClientKey((string) $row['nombre'], (string) $row['email']);
+    if (!isset($clients[$clientKey])) {
+        $baseFolderName = sanitizeFolderName((string) $row['nombre']);
+        $folderName = uniqueFolderName($baseFolderName, $usedFolderNames);
+
+        $clients[$clientKey] = [
+            'folder' => $folderName,
+            'rows' => [],
+            'files' => [],
+        ];
+    }
+
+    $clients[$clientKey]['rows'][] = $csvRow;
 
     $pdfRelativePath = (string) ($row['pdf_ruta'] ?? '');
     if ($pdfRelativePath === '' || $uploadsRoot === false) {
@@ -116,24 +134,75 @@ foreach ($rows as $row) {
 
     $originalName = (string) ($row['pdf_nombre_original'] ?? '');
     $safeOriginal = sanitizeFileName($originalName !== '' ? $originalName : basename($absolutePdfPath));
-    $zipName = sprintf('pdfs/%d_%s', (int) $row['id'], $safeOriginal);
-    $zip->addFile($absolutePdfPath, $zipName);
-    $pdfAdded++;
+
+    $clients[$clientKey]['files'][] = [
+        'id' => (int) $row['id'],
+        'path' => $absolutePdfPath,
+        'name' => $safeOriginal,
+    ];
 }
 
-rewind($csvHandle);
-$csvContent = stream_get_contents($csvHandle);
-fclose($csvHandle);
+rewind($generalCsvHandle);
+$generalCsvContent = stream_get_contents($generalCsvHandle);
+fclose($generalCsvHandle);
 
-if (!is_string($csvContent)) {
+if (!is_string($generalCsvContent)) {
     $zip->close();
     @unlink($tmpZipPath);
-    respondJson(500, ['ok' => false, 'message' => 'No se pudo leer el CSV generado.']);
+    respondJson(500, ['ok' => false, 'message' => 'No se pudo leer el CSV general generado.']);
 }
 
-$summary = sprintf("Solicitudes: %d\nPDFs incluidos: %d\nGenerado: %s\n", count($rows), $pdfAdded, date('Y-m-d H:i:s'));
-$zip->addFromString('resumen.txt', $summary);
-$zip->addFromString('solicitudes.csv', $csvContent);
+$zip->addFromString('datos_formulario/solicitudes.csv', $generalCsvContent);
+
+foreach ($clients as $clientData) {
+    $folderName = (string) $clientData['folder'];
+
+    $clientCsvHandle = fopen('php://temp', 'r+');
+    if ($clientCsvHandle === false) {
+        $zip->close();
+        @unlink($tmpZipPath);
+        respondJson(500, ['ok' => false, 'message' => 'No se pudo generar el CSV de un cliente.']);
+    }
+
+    fputcsv($clientCsvHandle, $columns, ';');
+    foreach ($clientData['rows'] as $clientRow) {
+        fputcsv($clientCsvHandle, $clientRow, ';');
+    }
+
+    rewind($clientCsvHandle);
+    $clientCsvContent = stream_get_contents($clientCsvHandle);
+    fclose($clientCsvHandle);
+
+    if (!is_string($clientCsvContent)) {
+        $zip->close();
+        @unlink($tmpZipPath);
+        respondJson(500, ['ok' => false, 'message' => 'No se pudo leer el CSV de un cliente.']);
+    }
+
+    $zip->addFromString('clientes/' . $folderName . '/datos_cliente.csv', $clientCsvContent);
+
+    foreach ($clientData['files'] as $file) {
+        $zipPath = sprintf(
+            'clientes/%s/%d_%s',
+            $folderName,
+            (int) $file['id'],
+            (string) $file['name']
+        );
+
+        if ($zip->addFile((string) $file['path'], $zipPath)) {
+            $totalFilesAdded++;
+        }
+    }
+}
+
+$summary = sprintf(
+    "Solicitudes seleccionadas: %d\nClientes incluidos: %d\nArchivos de factura incluidos: %d\nGenerado: %s\n",
+    count($rows),
+    count($clients),
+    $totalFilesAdded,
+    date('Y-m-d H:i:s')
+);
+$zip->addFromString('datos_formulario/resumen.txt', $summary);
 $zip->close();
 
 $downloadName = 'solicitudes_' . date('Ymd_His') . '.zip';
@@ -141,7 +210,7 @@ $zipSize = filesize($tmpZipPath);
 
 if ($zipSize === false) {
     @unlink($tmpZipPath);
-    respondJson(500, ['ok' => false, 'message' => 'No se pudo leer el tamaño del ZIP.']);
+    respondJson(500, ['ok' => false, 'message' => 'No se pudo leer el tamano del ZIP.']);
 }
 
 header('Content-Type: application/zip');
@@ -195,8 +264,44 @@ function sanitizeFileName(string $value): string
     $sanitized = is_string($sanitized) ? trim($sanitized, '._') : '';
 
     if ($sanitized === '') {
-        return 'factura.pdf';
+        return 'factura.bin';
     }
 
     return $sanitized;
+}
+
+function sanitizeFolderName(string $value): string
+{
+    $trimmed = trim($value);
+    if ($trimmed === '') {
+        return 'cliente_sin_nombre';
+    }
+
+    $sanitized = preg_replace('/[^A-Za-z0-9_-]/', '_', $trimmed);
+    $sanitized = is_string($sanitized) ? trim($sanitized, '._') : '';
+
+    if ($sanitized === '') {
+        return 'cliente_sin_nombre';
+    }
+
+    return $sanitized;
+}
+
+function buildClientKey(string $name, string $email): string
+{
+    return strtolower(trim($name)) . '|' . strtolower(trim($email));
+}
+
+function uniqueFolderName(string $base, array &$usedFolderNames): string
+{
+    $candidate = $base;
+    $index = 2;
+
+    while (isset($usedFolderNames[$candidate])) {
+        $candidate = $base . '_' . $index;
+        $index++;
+    }
+
+    $usedFolderNames[$candidate] = true;
+    return $candidate;
 }

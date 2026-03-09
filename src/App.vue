@@ -1,6 +1,6 @@
 <template>
   <div class="app-shell">
-    <SiteHeader />
+    <SiteHeader :user="auth.state.user" />
     <main class="main">
       <div class="page-wrapper">
         <router-view v-slot="{ Component, route }">
@@ -25,12 +25,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import SiteHeader from "./components/SiteHeader.vue";
 import SiteFooter from "./components/SiteFooter.vue";
 import CTASticky from "./components/CTASticky.vue";
 import ScrollTopButton from "./components/ScrollTopButton.vue";
+import { auth } from "./services/auth";
 
 const isCTAClosed = ref(false);
+
+onMounted(() => {
+  auth.initialize();
+});
 </script>
 

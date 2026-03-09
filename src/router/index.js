@@ -11,6 +11,7 @@ import Resources from "../pages/Resources.vue";
 import About from "../pages/About.vue";
 import ClientArea from "../pages/ClientArea.vue";
 import NotFound from "../pages/NotFound.vue";
+import AuthCallback from "../pages/AuthCallback.vue";
 
 const routes = [
   { path: "/", component: Home },
@@ -24,6 +25,7 @@ const routes = [
   { path: "/recursos", component: Resources },
   { path: "/sobre-nosotros", component: About },
   { path: "/area-clientes", component: ClientArea },
+  { path: "/auth/callback", component: AuthCallback },
   { path: "/:pathMatch(.*)*", component: NotFound },
 ];
 

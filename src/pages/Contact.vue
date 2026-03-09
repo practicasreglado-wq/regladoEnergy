@@ -5,7 +5,7 @@
       <div class="grid grid-2">
         <div class="card soft glow" v-glow v-reveal="{ from: 'left', delay: 50 }">
           <div class="badge" v-reveal="{ from: 'up', delay: 80 }">Contacto</div>
-          <h1 class="h1" v-reveal="{ from: 'up', delay: 120 }">Realizamos un análisis gratuito de facturas.</h1>
+          <h1 class="h1" v-reveal="{ from: 'up', delay: 120 }">Realizamos un analisis gratuito de facturas.</h1>
           <p class="p" v-reveal="{ from: 'right', delay: 170 }">
             Completa el formulario o sube tu factura en PDF y te llamamos con los resultados.
           </p>
@@ -13,40 +13,40 @@
           <div class="card" style="margin-top:14px;" v-reveal="{ from: 'up', delay: 210 }">
             <h2 class="h2" style="margin-bottom:10px;" v-reveal="{ from: 'up', delay: 240 }">Estudios personalizados</h2>
             <p class="p" v-reveal="{ from: 'up', delay: 270 }">
-              Cada cliente tiene un consumo distinto. Realizamos estudios personalizados en función del perfil y las necesidades reales.
+              Cada cliente tiene un consumo distinto. Realizamos estudios personalizados en funcion del perfil y las necesidades reales.
             </p>
 
             <h2 class="h2" style="margin:14px 0 10px;" v-reveal="{ from: 'up', delay: 300 }">Subida de facturas</h2>
             <p class="p" v-reveal="{ from: 'up', delay: 330 }">
-              Sube tu factura en PDF. Realizaremos un análisis previo y te contactaremos para comentarte los resultados y las opciones de mejora.
+              Sube tu factura en PDF. Realizaremos un analisis previo y te contactaremos para comentarte los resultados y las opciones de mejora.
             </p>
           </div>
         </div>
 
         <div class="card glow" v-glow v-reveal="{ from: 'right', delay: 70 }">
           <h2 class="h2" v-reveal="{ from: 'up', delay: 100 }">Formulario (demo)</h2>
-          <p class="p" v-reveal="{ from: 'up', delay: 130 }">En esta demo el envío es simulado. En producción se conecta a tu backend/CRM o servicio de formularios.</p>
+          <p class="p" v-reveal="{ from: 'up', delay: 130 }">En esta demo el envio es simulado. En produccion se conecta a tu backend/CRM o servicio de formularios.</p>
 
           <form class="form" @submit.prevent="submit" v-reveal="{ from: 'up', delay: 160 }">
             <div class="grid grid-2">
               <div class="field" v-reveal="{ from: 'left', delay: 190 }">
                 <label>Nombre *</label>
-                <input v-model="f.name" required placeholder="Tu nombre" />
+                <input v-model="f.name" :disabled="isLoggedIn" required placeholder="Tu nombre" />
               </div>
               <div class="field" v-reveal="{ from: 'right', delay: 220 }">
-                <label>Teléfono *</label>
-                <input v-model="f.phone" required placeholder="+34 ..." />
+                <label>Telefono *</label>
+                <input v-model="f.phone" :disabled="isLoggedIn" required placeholder="+34 ..." />
               </div>
             </div>
 
             <div class="field" v-reveal="{ from: 'up', delay: 250 }">
               <label>Email *</label>
-              <input v-model="f.email" required type="email" placeholder="tu@email.com" />
+              <input v-model="f.email" :disabled="isLoggedIn" required type="email" placeholder="tu@email.com" />
             </div>
 
             <div class="field" v-reveal="{ from: 'up', delay: 280 }">
               <label>Mensaje (opcional)</label>
-              <textarea v-model="f.msg" placeholder="Cuéntanos tu caso (tarifa, potencia, incidencias, etc.)"></textarea>
+              <textarea v-model="f.msg" placeholder="Cuentanos tu caso (tarifa, potencia, incidencias, etc.)"></textarea>
             </div>
 
             <div class="field" v-reveal="{ from: 'up', delay: 310 }">
@@ -67,26 +67,63 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { computed, onMounted, reactive, ref, watch } from "vue";
 import { setSeo } from "../seo.js";
-import { reactive, ref } from "vue";
-const f = reactive({ name:"", phone:"", email:"", msg:"", file:null });
-const sent = ref(false);
+import { auth } from "../services/auth";
 
-function onFile(e){ f.file = e.target.files?.[0] || null; }
-function submit(){
+const f = reactive({ name: "", phone: "", email: "", msg: "", file: null });
+const sent = ref(false);
+const isLoggedIn = computed(() => Boolean(auth.state.user));
+
+function fillLockedFields() {
+  const user = auth.state.user;
+  if (!user) {
+    return;
+  }
+
+  const firstName = (user.first_name || "").trim();
+  const lastName = (user.last_name || "").trim();
+  const fullName = `${firstName} ${lastName}`.trim() || user.name || "";
+
+  f.name = fullName;
+  f.phone = user.phone || "";
+  f.email = user.email || "";
+}
+
+function onFile(e) {
+  f.file = e.target.files?.[0] || null;
+}
+
+function submit() {
   sent.value = true;
-  setTimeout(()=> (sent.value = false), 4200);
-  f.name=""; f.phone=""; f.email=""; f.msg=""; f.file=null;
+  setTimeout(() => (sent.value = false), 4200);
+
+  if (!isLoggedIn.value) {
+    f.name = "";
+    f.phone = "";
+    f.email = "";
+  }
+
+  f.msg = "";
+  f.file = null;
 }
 
 onMounted(() => {
+  fillLockedFields();
+
   setSeo({
-    title: "Contacto | Análisis gratuito de facturas | Reglado Energy",
-    description: "Solicita un análisis gratuito de facturas. Completa el formulario o sube tu PDF y te llamamos con resultados y opciones de mejora.",
-    canonical: "/#/contacto"
+    title: "Contacto | Analisis gratuito de facturas | Reglado Energy",
+    description: "Solicita un analisis gratuito de facturas. Completa el formulario o sube tu PDF y te llamamos con resultados y opciones de mejora.",
+    canonical: "/#/contacto",
   });
 });
+
+watch(
+  () => auth.state.user,
+  () => {
+    fillLockedFields();
+  }
+);
 </script>
 
 <style scoped>
@@ -108,6 +145,10 @@ input, textarea{
 }
 textarea{ min-height: 110px; resize: vertical; }
 input:focus, textarea:focus{ border-color: rgba(242,197,61,.35); box-shadow: 0 0 0 4px rgba(242,197,61,.10); }
+input:disabled{
+  opacity: 0.75;
+  cursor: not-allowed;
+}
 .sent{ margin-top: 14px; padding: 14px; border-radius: var(--radius-md); border:1px solid rgba(242,197,61,.32); background: rgba(242,197,61,.08); }
 
 .file::file-selector-button{

@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 // Genera y descarga un ZIP con datos generales y carpetas por cliente (CSV propio + archivos de factura).
 require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/auth.php';
 
-applyCors();
+applySecurityHeaders();
+enforceProductionSecurity();
+applyCorsHeaders(['GET', 'POST', 'OPTIONS'], 'Content-Type, Authorization', false);
+header('Access-Control-Expose-Headers: Content-Disposition');
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
     http_response_code(204);
@@ -15,6 +19,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     respondJson(405, ['ok' => false, 'message' => 'Metodo no permitido.']);
 }
+
+requireAdminAuth();
 
 $rawInput = file_get_contents('php://input');
 $payload = json_decode($rawInput ?: '', true);
@@ -63,6 +69,7 @@ try {
     $statement->execute($ids);
     $rows = $statement->fetchAll();
 } catch (Throwable $exception) {
+    error_log('ADMIN_DOWNLOAD_ERROR ip=' . getClientIpAddress() . ' message=' . $exception->getMessage());
     respondJson(500, ['ok' => false, 'message' => 'No se pudieron cargar las solicitudes seleccionadas.']);
 }
 
@@ -219,36 +226,6 @@ header('Content-Length: ' . (string) $zipSize);
 readfile($tmpZipPath);
 @unlink($tmpZipPath);
 exit;
-
-function applyCors(): void
-{
-    $origin = $_SERVER['HTTP_ORIGIN'] ?? null;
-    if (is_string($origin) && isAllowedOrigin($origin)) {
-        header('Access-Control-Allow-Origin: ' . $origin);
-    }
-
-    header('Vary: Origin');
-    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type');
-    header('Access-Control-Expose-Headers: Content-Disposition');
-}
-
-function isAllowedOrigin(string $origin): bool
-{
-    $parts = parse_url($origin);
-    if (!is_array($parts)) {
-        return false;
-    }
-
-    $scheme = strtolower((string) ($parts['scheme'] ?? ''));
-    $host = strtolower((string) ($parts['host'] ?? ''));
-
-    if (!in_array($scheme, ['http', 'https'], true)) {
-        return false;
-    }
-
-    return in_array($host, ['localhost', '127.0.0.1', '::1'], true);
-}
 
 function respondJson(int $status, array $payload): void
 {

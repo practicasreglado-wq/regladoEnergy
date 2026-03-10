@@ -9,18 +9,14 @@ declare(strict_types=1);
 */
 
 require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/security.php';
 
 $mailTo = getenv('CONTACT_MAIL_TO') ?: 'formulario@regladoenergy.com';
 $mailFrom = getenv('CONTACT_MAIL_FROM') ?: 'no-reply@regladoenergy.com';
 
-if (isset($_SERVER['HTTP_ORIGIN']) && isAllowedOrigin($_SERVER['HTTP_ORIGIN'])) {
-    header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
-}
-
-header('Vary: Origin');
-header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-header('Content-Type: application/json; charset=utf-8');
+applySecurityHeaders();
+enforceProductionSecurity();
+applyCorsHeaders(['POST', 'OPTIONS'], 'Content-Type');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
@@ -68,12 +64,33 @@ if (isset($_FILES['pdf']) && (int) $_FILES['pdf']['error'] !== UPLOAD_ERR_NO_FIL
     }
 
     $tmpPath = (string) $pdf['tmp_name'];
+    if (!is_uploaded_file($tmpPath)) {
+        respond(400, ['ok' => false, 'message' => 'Archivo de subida invalido.']);
+    }
+
     $finfo = new finfo(FILEINFO_MIME_TYPE);
     $mime = (string) $finfo->file($tmpPath);
+    $originalName = (string) ($pdf['name'] ?? '');
+    $extension = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
 
-    $isAllowedMime = $mime === 'application/pdf' || str_starts_with($mime, 'image/');
-    if (!$isAllowedMime) {
+    $allowedMimeMap = [
+        'application/pdf' => ['pdf'],
+        'image/jpeg' => ['jpg', 'jpeg'],
+        'image/png' => ['png'],
+        'image/webp' => ['webp'],
+        'image/gif' => ['gif'],
+        'image/bmp' => ['bmp'],
+        'image/tiff' => ['tif', 'tiff'],
+        'image/heic' => ['heic'],
+        'image/heif' => ['heif'],
+    ];
+
+    if (!isset($allowedMimeMap[$mime])) {
         respond(422, ['ok' => false, 'message' => 'Solo se permiten archivos PDF o imagen.']);
+    }
+
+    if ($extension === '' || !in_array($extension, $allowedMimeMap[$mime], true)) {
+        respond(422, ['ok' => false, 'message' => 'La extension del archivo no coincide con su tipo real.']);
     }
 
     $uploadsDir = __DIR__ . DIRECTORY_SEPARATOR . 'uploads';
@@ -81,8 +98,7 @@ if (isset($_FILES['pdf']) && (int) $_FILES['pdf']['error'] !== UPLOAD_ERR_NO_FIL
         throw new RuntimeException('No se pudo crear la carpeta de uploads.');
     }
 
-    $extension = extensionFromMime($mime);
-    $generatedFileName = date('Ymd_His') . '_' . bin2hex(random_bytes(6)) . '.' . $extension;
+    $generatedFileName = date('Ymd_His') . '_' . bin2hex(random_bytes(16)) . '.' . extensionFromMime($mime);
     $absolutePath = $uploadsDir . DIRECTORY_SEPARATOR . $generatedFileName;
 
     if (!move_uploaded_file($tmpPath, $absolutePath)) {
@@ -91,7 +107,7 @@ if (isset($_FILES['pdf']) && (int) $_FILES['pdf']['error'] !== UPLOAD_ERR_NO_FIL
 
     $uploadAbsolutePath = $absolutePath;
     $uploadRelativePath = 'uploads/' . $generatedFileName;
-    $pdfOriginalName = (string) ($pdf['name'] ?? $generatedFileName);
+    $pdfOriginalName = sanitizeStoredFileName($originalName !== '' ? $originalName : $generatedFileName);
     $pdfMime = $mime;
     $pdfSize = $fileSize;
 }
@@ -167,6 +183,7 @@ try {
         @unlink($uploadAbsolutePath);
     }
 
+    error_log('CONTACT_BACKEND_ERROR ip=' . getClientIpAddress() . ' message=' . $exception->getMessage());
     respond(500, [
         'ok' => false,
         'message' => 'Error interno guardando la solicitud.',
@@ -268,6 +285,13 @@ function sanitizeHeaderValue(string $value): string
     return str_replace(["\r", "\n"], '', trim($value));
 }
 
+function sanitizeStoredFileName(string $value): string
+{
+    $sanitized = preg_replace('/[^A-Za-z0-9._-]/', '_', $value);
+    $sanitized = is_string($sanitized) ? trim($sanitized, '._') : '';
+    return $sanitized !== '' ? $sanitized : 'adjunto.bin';
+}
+
 function extensionFromMime(string $mime): string
 {
     return match ($mime) {
@@ -282,21 +306,4 @@ function extensionFromMime(string $mime): string
         'image/heif' => 'heif',
         default => 'bin',
     };
-}
-
-function isAllowedOrigin(string $origin): bool
-{
-    $parts = parse_url($origin);
-    if (!is_array($parts)) {
-        return false;
-    }
-
-    $scheme = strtolower((string) ($parts['scheme'] ?? ''));
-    $host = strtolower((string) ($parts['host'] ?? ''));
-
-    if (!in_array($scheme, ['http', 'https'], true)) {
-        return false;
-    }
-
-    return in_array($host, ['localhost', '127.0.0.1', '::1'], true);
 }

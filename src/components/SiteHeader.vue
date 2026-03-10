@@ -32,6 +32,16 @@
             Solicitar analisis
           </router-link>
 
+          <router-link
+            v-if="isAdmin"
+            to="/admin"
+            class="admin-pill"
+            title="Panel de administración"
+            aria-label="Panel de administración"
+          >
+            <img :src="adminUserIcon" alt="" class="admin-icon" />
+          </router-link>
+
           <template v-if="user">
             <div class="user-menu-wrap">
               <button
@@ -39,15 +49,17 @@
                 @click="toggleUserMenu"
                 aria-haspopup="menu"
                 :aria-expanded="userMenuOpen ? 'true' : 'false'"
+                :title="displayUsername"
+                aria-label="Menu de usuario"
               >
-                {{ displayUsername }}
+                <img :src="userIcon" alt="" class="user-icon" />
               </button>
               <div v-if="userMenuOpen" class="user-menu" role="menu" aria-label="Menu de usuario">
                 <button class="user-menu-item" type="button" role="menuitem" @click="goToSettings">
-                  Configuracion
+                  Configuración
                 </button>
                 <button class="user-menu-item danger" type="button" role="menuitem" @click="handleLogout">
-                  Cerrar sesion
+                  Cerrar sesión
                 </button>
               </div>
             </div>
@@ -55,7 +67,7 @@
 
           <template v-else>
             <button class="btn primary glow header-action" v-glow @click="goToLogin">
-              Iniciar sesion
+              Iniciar sesión
             </button>
           </template>
         </div>
@@ -96,15 +108,19 @@
           Solicitar analisis
         </router-link>
 
+        <router-link v-if="isAdmin" @click="closeMobileMenu" to="/admin" class="btn mobile-action">
+          Panel de administración
+        </router-link>
+
         <template v-if="user">
-          <div class="mobile-user">Sesion: {{ displayUsername }}</div>
-          <button @click="handleMobileSettings" class="btn mobile-action">Configuracion</button>
+          <div class="mobile-user">Sesión: {{ displayUsername }}</div>
+          <button @click="handleMobileSettings" class="btn mobile-action">Configuración</button>
           <button @click="handleMobileLogout" class="btn mobile-action">Salir</button>
         </template>
 
         <template v-else>
           <button @click="handleMobileLogin" class="btn primary glow mobile-action" v-glow>
-            Iniciar sesion / registrarse
+            Iniciar sesión / registrarse
           </button>
         </template>
       </div>
@@ -115,6 +131,8 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import logo from "../assets/reglado-energy-logo.svg";
+import adminUserIcon from "../assets/admin-user-icon.svg";
+import userIcon from "../assets/user-icon.svg";
 import { auth } from "../services/auth";
 
 const props = defineProps({
@@ -130,6 +148,7 @@ const userMenuOpen = ref(false);
 const headerRef = ref(null);
 const mobileMediaQuery = "(max-width: 980px)";
 let mediaQueryList;
+const isAdmin = computed(() => props.user?.role === "admin");
 const displayUsername = computed(() => {
   const username = props.user?.username;
   if (typeof username === "string" && username.trim() !== "") {
@@ -246,14 +265,35 @@ onBeforeUnmount(() => {
 .nav{ display:flex; align-items:center; gap: 6px; }
 .nav-actions{ display: flex; align-items: center; gap: 10px; margin-left: 40px; }
 .header-action{ min-width: 124px; min-height: 36px; padding: 0 12px; font-size: 12px; line-height: 1; white-space: nowrap; }
+.admin-pill{
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  background: rgba(255,255,255,.03);
+  display: grid;
+  place-items: center;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+.admin-pill:hover{
+  background: rgba(255,255,255,.08);
+  border-color: rgba(242,197,61,.35);
+  transform: translateY(-1px);
+}
+.admin-icon{ width: 20px; height: 20px; display: block; }
 .user-pill{
   border: 1px solid rgba(255,255,255,.18);
   border-radius: 999px;
-  padding: 8px 12px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
   font-size: 12px;
   color: rgba(233,238,246,.9);
   background: rgba(255,255,255,.03);
+  display: grid;
+  place-items: center;
 }
+.user-icon{ width: 19px; height: 19px; display: block; }
 .user-menu-wrap{
   position: relative;
 }

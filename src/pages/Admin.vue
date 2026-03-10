@@ -1,13 +1,13 @@
-<template>
+﻿<template>
   <section class="section">
     <div class="container">
       <div class="card soft glow">
         <div class="header-row">
           <div>
-            <div class="badge">Panel Admin</div>
-            <h1 class="h1">Hola, Admin</h1>
+            <div class="badge">Panel de administración</div>
+            <h1 class="h1">Hola, administrador</h1>
             <p class="p">
-              Solicitudes recibidas, ordenadas por fecha. Puedes seleccionar varias y descargar ZIP con CSV + PDFs.
+              Solicitudes recibidas, ordenadas por fecha. Puedes seleccionar varias y descargar un ZIP con CSV y PDF.
             </p>
           </div>
 
@@ -79,6 +79,7 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
 import { setSeo } from "../seo.js";
+import { auth } from "../services/auth";
 
 const BACKEND_BASE =
   import.meta.env.VITE_BACKEND_BASE ||
@@ -90,6 +91,7 @@ const loading = ref(false);
 const downloading = ref(false);
 const errorMsg = ref("");
 const successMsg = ref("");
+const isAdmin = computed(() => auth.state.user?.role === "admin");
 
 const isAllSelected = computed(() => rows.value.length > 0 && rows.value.every((row) => selectedIds.value.includes(row.id)));
 
@@ -111,7 +113,15 @@ async function loadRows() {
   successMsg.value = "";
 
   try {
-    const response = await fetch(`${BACKEND_BASE}/admin_list.php`);
+    if (!auth.state.token || !isAdmin.value) {
+      throw new Error("Acceso restringido a administradores.");
+    }
+
+    const response = await fetch(`${BACKEND_BASE}/admin_list.php`, {
+      headers: {
+        Authorization: `Bearer ${auth.state.token}`,
+      },
+    });
     const payload = await response.json().catch(() => ({}));
 
     if (!response.ok || !payload.ok) {
@@ -143,10 +153,15 @@ async function downloadSelected() {
   successMsg.value = "";
 
   try {
+    if (!auth.state.token || !isAdmin.value) {
+      throw new Error("Acceso restringido a administradores.");
+    }
+
     const response = await fetch(`${BACKEND_BASE}/admin_download.php`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${auth.state.token}`,
       },
       body: JSON.stringify({ ids: selectedIds.value }),
     });
@@ -181,12 +196,19 @@ async function downloadSelected() {
 
 onMounted(() => {
   setSeo({
-    title: "Panel Admin | Reglado Energy",
+    title: "Panel de administración | Reglado Energy",
     description: "Panel interno de solicitudes de contacto y facturas.",
     canonical: "/#/admin",
   });
 
-  loadRows();
+  auth.initialize().then(() => {
+    if (isAdmin.value) {
+      loadRows();
+      return;
+    }
+
+    errorMsg.value = "Acceso restringido a administradores.";
+  });
 });
 </script>
 
@@ -297,3 +319,4 @@ onMounted(() => {
   color: #ffd3d3;
 }
 </style>
+

@@ -11,6 +11,14 @@ const state = reactive({
   loading: false,
 });
 
+const AUTH_MESSAGE_MAP = {
+  "request failed": "La solicitud no se pudo completar.",
+  "invalid token": "Tu sesión no es válida. Vuelve a iniciar sesión.",
+  "token revoked": "Tu sesión ya no es válida. Vuelve a iniciar sesión.",
+  unauthorized: "Debes iniciar sesión para continuar.",
+  "too many requests, try again later": "Has realizado demasiados intentos. Inténtalo más tarde.",
+};
+
 function authHeaders() {
   return state.token ? { Authorization: `Bearer ${state.token}` } : {};
 }
@@ -32,7 +40,7 @@ async function request(path, options = {}) {
   }
 
   if (!response.ok) {
-    throw new Error(payload.error || payload.message || "request failed");
+    throw new Error(translateAuthMessage(payload.error || payload.message || "request failed"));
   }
 
   return payload;
@@ -124,4 +132,8 @@ function getCookie(name) {
     }
   }
   return "";
+}
+
+function translateAuthMessage(message) {
+  return AUTH_MESSAGE_MAP[message] || message;
 }
